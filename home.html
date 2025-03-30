@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png">
+    <title>Dreamkeys</title>
+      <link rel="stylesheet" href="homestyle.css">  
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <a href="home.html" class="logo">
+        <img src="assets/logo.png" alt="logo">
+    </a>
+    <ul class="navbar">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="index.html">Buy</a></li>
+        <li><a href="rent.html">Rent</a></li>
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href=#contact>Contact Us</a></li>
+    </ul>
+
+    <div class="h-btn">
+        <!-- <a href="#" class="h-btn1">Login</a> -->
+        <button onclick="show()" id="loginButton" class="h-btn1">Login</button>
+        <button onclick="showregister()" id="signUpButton" class="h-btn2">Sign Up</button>
+        <button onclick="onLogout()" id="logoutButton" class="h-btn1" style="display: none;">Logout</button>
+        <div id="userProfile" class="user-circle" style="display: none;">
+            <img id="profileImage" src="" alt="Profile Picture" style="display: none;">
+        </div>
+
+        <div id="overlay" style="display: none;">
+            <div class="credentials">
+                <div class="login" style="display: none;">
+                    <form class="form">
+                        <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
+                        <h1 class="head1">LOGIN</h1>
+                        <label class="mylabel">Username</label>
+                        <input type="text" class="myinput" id="username" required>
+                        <label class="mylabel">Password</label>
+                        <input type="password" class="myinput" id="password" required>
+                        <button id="mybtn1" class="mybutton">Login</button>
+                    </form>
+                </div>
+                <div class="register" style="display: none;">
+                    <form class="form" >
+                        <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
+                        <h1 class="head1">SIGN UP</h1>
+                        <label class="mylabel">Username</label>
+                        <input type="text" class="myinput"  required>
+                        <label class="mymaillabel">Email Id</label>
+                        <input type="text" class="myinput" id="email" required>
+                        <label class="mylabel">Password</label>
+                        <input type="password" class="myinput">
+                        <button id="mybtn2" class="mybutton">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- <a href="#" class="h-btn2">Sign Up</a> -->
+        <div class="bx bx-menu" id="menu-icon"></div>
+    </div>
+  </header>
+    <section class="home">
+        <div class="home-text">
+            <h1>Find your dream home with ease and confidence.</h1>
+            <p>Discover your perfect property with us! 
+               We offer a wide range of buying, selling, and rental options, all backed by expert guidance. 
+               Let us help you make your real estate journey seamless and stress-free.</p>
+               <div class="hsearch">
+                    <form>
+                        <input type="search" placeholder="Search By Location.." class="search-input">
+                        <input type="submit" value="Search">
+                    </form>
+               </div>
+        </div>
+        <div class="home-img">
+            <img src="img1/img/homeimage.jpg" alt="homeimage">
+        </div>
+    </section>
+  <section class="feature">
+  <div class="centre-left">
+    <h2>Feature In</h2>
+  </div>
+  <div class="feature-content">
+    <div class="f-img">
+        <img src="img1/img/f1.png" alt="content1">
+    </div>
+    <div class="f-img">
+        <img src="img1/img/f2.png" alt=content2>
+    </div><div class="f-img">
+        <img src="img1/img/f3.png" alt="content3">
+    </div><div class="f-img">
+        <img src="img1/img/f4.png" alt="content4">
+    </div><div class="f-img">
+        <img src="img1/img/f5.png" alt="content5">
+    </div>
+  </div>
+  </section>
+  <section class="property">
+    <div class="centre-left">
+        <h2>Popular Residence</h2>
+    </div>
+    <div class="property-content">
+        <div class="row">
+            <img src="img1/img/p1.png" alt="residance1">
+            <h5>Aaradhya Emerald Enclave</h5>
+            <p>Sector 19,Palm Beach Road,Nerul,Navi Mumbai,Maharashtra</p>
+            <div class="list">
+                <a href="#" class="residance-list">
+                <i class='bx bx-bed'></i>
+                3 Bed
+            </a>
+            <a href="#" class="residance-list">
+                <i class='bx bx-bath' ></i>
+                2 Bath
+            </a>
+            <a href="#" class="residance-list">
+                <i class='bx bx-shape-square'></i>
+                1900 sqft
+            </a>
+            </div>
+        </div>
+        <div class="row">
+            <img src="img1/img/p2.png" alt="residance2">
+            <h5>Celestia Opulent</h5>
+            <p>Plot No 22,MG Road,Sector 9,Kharghar,Navi Mumbai,Maharashtra</p>
+            <div class="list">
+                <a href="#" class="residance-list">
+                <i class='bx bx-bed'></i>
+                4 Bed
+            </a>
+            <a href="#" class="residance-list">
+                <i class='bx bx-bath' ></i>
+                3 Bath
+            </a>
+            <a href="#" class="residance-list">
+                <i class='bx bx-shape-square'></i>
+                2200 sqft
+            </a>
+            </div>
+        </div>
+        <div class="row">
+            <img src="img1/img/p3.png" alt="residance3">
+            <h5>Hiranandani Garden</h5>
+            <p>Plot No 5,Railway Station Road,Sector 8,Airoli,Navi Mumbai,Maharashtra</p>
+            <div class="list">
+                <a href="#" class="residance-list">
+                <i class='bx bx-bed'></i>
+                2 Bed
+            </a>
+            <a href="#" class="residance-list">
+                <i class='bx bx-bath' ></i>
+                2 Bath
+            </a>
+            <a href="#" class="residance-list">
+                <i class='bx bx-shape-square'></i>
+                1500 sqft
+            </a>
+            </div>
+        </div>
+    </div>
+    <div class="centre-btn">
+        <a href="#" class="btn">View All Properties</a>
+    </div>
+  </section>
+  <section class="about">
+    <div class="about-img">
+        <img src="about-image.jpg" alt="about-image">
+    </div>
+    <div class="about-text">
+        <h2>We help people to find and rent Homes</h2>
+        <p>At DreamKeys, we’re passionate about connecting people with their dream properties.
+           With years of experience in the real estate market, we specialize in buying, selling, and renting homes that suit every lifestyle and budget. 
+           Our dedicated team provides personalized service, guiding you through every step of the process with transparency and care. 
+           Whether you’re a first-time buyer, a seasoned investor, or looking for your next rental, we’re here to make your real estate journey seamless and successful. 
+           Trust us to help you find a place to call home!</p>
+        <div class="icons">
+            <a href="#"><i class='bx bxl-facebook' ></i></a>
+            <a href="#"><i class='bx bxl-instagram' ></i></a>
+            <a href="#"><i class='bx bxl-twitter' ></i></a>
+        </div>
+           <a href="#" class="btn">Get In Touch</a>
+    </div>
+  </section>
+  <section id="contact">
+    <div class="contact-content">
+     <img src="logonew.jpg" alt="logo">
+     <p> Contact us today for personalized real estate assistance to turn your property dreams into reality.</p>
+        </div>
+        <div class="contact-content">
+        <h4>Projects</h4>
+        <ul>
+        <li><a href="#">Houses</a></li>
+        <li><a href="#">Rooms</a></li>
+        <li><a href="#">Flats</a></li>
+        </ul>
+    </div>
+    <div class="contact-content">
+        <h4>Company</h4>
+        <ul>
+        <li><a href="#">How we work?</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">News and Blogs</a></li>
+        </ul>
+        </div>
+        <div class="contact-content">
+        <h4>Support</h4>
+        <ul>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Support Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        </ul>
+        </div>
+        <div class="contact-content">
+        <h4>Follow Us on</h4>
+        <div class="icons">
+            <a href="#"><i class='bx bxl-facebook' ></i></a>
+            <a href="#"><i class='bx bxl-instagram' ></i></a>
+            <a href="#"><i class='bx bxl-twitter' ></i></a>
+        </div>
+        </div>
+  </section>
+  <footer class="footer-privacy">
+    <span class="footer-copy">
+        &#169; DreamKeys. All rights reserved 
+    </span>
+  </footer>
+  <script src="auth.js"></script>  
+  <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+@media (max-width: 75em){
+    html {
+      font-size: 14px;
+    }
+
+    .image-preview-box {
+      transform: translate(20%, -6rem);
+    }
+}
+
+@media (max-width: 67em){
+  html {
+    font-size: 13px;
+  }
+  .image-preview-box {
+    transform: translate(20%, -8rem);
+  }
+}
+
+@media (max-width:59em) {
+    html {
+      font-size: 12px;
+    }
+  header {
+    position:relative;
+  }
+  .navbar {
+    display:none;
+  }
+  .menu-btn {
+    display:inline;
+  }
+  
+  .mobile-nav {
+    height: 100vh;
+    width: 80%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:flex-start;
+    position: absolute;
+    top: 0px;
+    right:0px;
+    padding: 20px;
+    background-color: #fff;
+    color: #121b25;
+    transform: translateX(50%);
+    transition: all 0.5s ease-in; 
+    z-index: 3;
+    opacity:0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  header > .user {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+  header .open {
+    visibility:visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform:translateX(0);
+  }
+
+  .nav-link {
+    color:#121b25;
+
+  }
+  .container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  #owner-card {
+    align-self: center;
+    flex-basis: 25rem;
+    width: 22rem;
+  }
+  .property-tab {
+    gap: 0.625rem;
+  }
+}
+
+@media (max-width: 40em){
+  html {
+    font-size: 10px;
+  }
+  .image-preview-box {
+    transform: translate(20%, -12rem);
+  }
+  
+  .property-tab {
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 32em){
+  #owner-card {
+    width: 20rem;
+  }
+  .property-form {
+    width: 80%;
+  }
+  .image-preview-box {
+    transform: translate(20%, -14rem);
+  }
+}
