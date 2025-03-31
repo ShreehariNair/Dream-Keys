@@ -526,7 +526,7 @@ justify-content: space-between;}
   cursor: pointer;
 }
 
-#close-login {
+#close-login,#close-register {
   position: absolute;
   top: 20px;
   right: 15px;
@@ -623,9 +623,6 @@ a {
   align-items: center;
 }
 .user-circle{
-  position: fixed;
-  top: 47px;
-  right: 220px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -636,12 +633,9 @@ a {
   z-index: 1000;
   cursor: pointer;
   overflow: hidden;
-}
-.user-circle img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+  font-size: 2rem;
+  color: white;
+
 }
 
 .h-btn{

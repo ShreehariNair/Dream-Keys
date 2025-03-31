@@ -30,20 +30,24 @@
     session_start();
     $username = '';
     $password = '';
+    $email = '';
     $error = '';
     
+    if(isset($_SESSION['status'])){
+        echo $_SESSION['status'];
+        $_SESSION['status'] = '';
+    }
     if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
         session_reset();
         session_destroy();
+        header('Location: '.'home.php');
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
         echo '<form method="POST" action="home.php"><div class="h-btn">
-        <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button><div id="userProfile" class="user-circle">
-    <img id="profileImage" src="" alt="Profile Picture">
-    </div></form>';
+        <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div></form>
+        <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button>';
     } else {
-
     echo '<div class="h-btn">
     <button onclick="show()" id="loginButton" class="h-btn1">Login</button>
     <button onclick="showregister()" id="signUpButton" class="h-btn2">Sign Up</button>
@@ -63,15 +67,15 @@
             </form>
             </div>
             <div class="register" style="display: none;">
-            <form class="form" action="home.php">
+            <form class="form" method="POST" action="home.php">
             <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
                         <h1 class="head1">SIGN UP</h1>
                         <label class="mylabel">Username</label>
-                        <input type="text" class="myinput" id="user" required>
+                        <input type="text" class="myinput" name="username" id="user" required>
                         <label class="mymaillabel">Email Id</label>
-                        <input type="text" class="myinput" id="email" required>
+                        <input type="email" class="myinput" name="email" id="email" required>
                         <label class="mylabel">Password</label>
-                        <input type="password" class="myinput" id="pw">
+                        <input type="password" class="myinput" name="pw" id="pw" required>
                         <button id="mybtn2" class="mybutton">Create Account</button>
                         </form>
                         </div>
@@ -88,7 +92,46 @@
                                 profileImage.src = profilePictureURL;
                                 profileImage.style.display = "block"; 
                                 userProfile.style.display = "flex";</script>';
-        } else if(isset($_POST['username']) && isset($_POST['pw'])){
+        } else if(isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['email'])){
+            global $username,$password; 
+            $username = $_POST['username'];
+            $password = $_POST['pw'];
+            $email = $_POST['email'];
+            $s = "localhost";
+            $u = "DBA";
+            $p = "dba";
+            $db = "dream keys";
+
+            $user = [];
+            $conn = mysqli_connect($s,$u,$p,$db);
+            $query = $conn -> prepare("Select * from users where user_id = ? LIMIT 1;");
+            $query -> bind_param('s',$username);
+            $query -> execute();
+            $result = $query -> get_result();
+            while($row = $result -> fetch_assoc()){
+                array_push($user,$row);
+            };
+            $query -> close();
+            $conn->close();
+            if(!empty($user) && $username == $user[0]['user_id']){
+                $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>User Id already exists</p></div>';
+            } else {
+                $s = "localhost";
+                $u = "DBA";
+                $p = "dba";
+                $db = "dream keys";
+                global $username,$password,$email;
+                $hashed_pw = password_hash($password,PASSWORD_DEFAULT);
+                $conn = mysqli_connect($s,$u,$p,$db);
+                $query = $conn -> prepare("Insert into users (user_id,hashed_password,email) VALUES (?,?,?)");
+                $query -> bind_param('sss',$username,$hashed_pw,$email);
+                $query -> execute();
+                $query -> close();
+                $conn->close();
+                $_SESSION['status'] = '<div class="message"><i class="ph ph-check-circle"></i><p>User Registered successfully</p></div>';
+            }
+            }    
+        else if(isset($_POST['username']) && isset($_POST['pw']) && !isset($_POST['email'])){
         
         global $username,$password; 
         $username = $_POST['username']; 
@@ -110,16 +153,16 @@
         $query -> close();
         $conn->close();
 
-        if($user != null && password_verify($password,$user[0]['hashed_password'])){
+        if(!empty($user) && password_verify($password,$user[0]['hashed_password'])){
             $_SESSION['username'] = $user[0]['user_id'];
             $_SESSION['password'] = $user[0]['hashed_password'];
-                global $error;
-                $error = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                echo $error;
+                $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
+                header('Location: '.'home.php');
         } else {
-            global $error;
-            $error = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
-            echo $error;
+            $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
+            header('Location: '.'home.php');
+            
+            
 }
 }
 ?>
