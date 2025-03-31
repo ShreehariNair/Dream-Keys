@@ -228,7 +228,7 @@
           <div id="map"></div>
         </div>
       </div> -->
-      <div id="owner-card">
+      <!-- <div id="owner-card">
         <p id="title">Owner Details</p>
         <div class="owner-info">
           <img src="assets/owner-img.jpg" alt="Portrait of Peter Parker" class="rounded-img" width="70" height="70">
@@ -245,7 +245,7 @@
           <input type="number" class="quotation-input">
           <button class="large-btn">Quote</button>
         </form>
-      </div>
+      </div> -->
     </div>
   </main>
   <section id="contact">

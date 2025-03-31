@@ -11,19 +11,15 @@ const request = new XMLHttpRequest();
 request.addEventListener('load',function(){
     
     let property = JSON.parse(this.responseText);
+    let image_url = property[0].image_url.split('|');
     const content =  `<div class="property-tab">
     <div class="image-section">
-    <video src="assets/inside-view.mp4" type="video/mp4" autoplay alt="House image" width="750" height="440" class="view-image">
-    <track src="assets/subtitles.vtt" kind="subtitles" srclang="en" label="English">
-    </video>
+    <img src=${image_url[0]} alt="House image" width="750" height="440" class="view-image">
     <div class="image-preview-box">
-    <img src="https://t4.ftcdn.net/jpg/03/71/92/67/240_F_371926762_MdmDMtJbXt7DoaDrxFP0dp9Nq1tSFCnR.jpg"
-    width="70" height="60" alt="house image" class="preview-1">
-    <img src="assets/image.png" width="70" height="60" class="active-image preview-2" alt="house-image">
-    <img src="https://t4.ftcdn.net/jpg/10/07/05/19/240_F_1007051990_TsJYcKSjbFRRF2RQmcwAEk0sPDUAyUqE.jpg"
-    width="70" height="60" alt="house image" class="preview-3">
-    <img src="https://t3.ftcdn.net/jpg/06/39/42/46/240_F_639424665_YGf5eZXs70GJQyKRHYS51uxg4daD8LFL.jpg"
-    width="70" height="60" alt="house image" class="preview-4">
+    <img src=${image_url[0]} width="70" height="60" alt="house image" class="preview-1">
+    <img src=${image_url[1]} width="70" height="60" class="active-image preview-2" alt="house-image">
+    <img src=${image_url[2]} width="70" height="60" alt="house image" class="preview-3">
+    <img src=${image_url[3]} width="70" height="60" alt="house image" class="preview-4">
     </div>
     </div>
     <div class="property-details">
@@ -50,7 +46,25 @@ request.addEventListener('load',function(){
     
     </p>
     </div>
-    </div>`;
+    </div>
+    <div id="owner-card">
+        <p id="title">Owner Details</p>
+        <div class="owner-info">
+          <img src="assets/owner-img.jpg" alt="Portrait of Peter Parker" class="rounded-img" width="70" height="70">
+          <div class="owner-name-job">
+            <p id="owner-name">${property[0].owner}</p>
+          </div>
+        </div>
+        <div class="owner-details">
+          <i class='bx bx-lock-alt XL-icon'></i>
+          <span class="hidden-message">The user allows only selected users to know their details</span>
+        </div>
+        <form class="quotation-form">
+          <input type="number" class="quotation-input">
+          <button class="large-btn">Quote</button>
+        </form>
+      </div>
+    `;
     
     document.querySelector('.container').insertAdjacentHTML('afterbegin',content);
     var map = L.map('map').setView([property[0].lat, property[0].longitude], 13);
