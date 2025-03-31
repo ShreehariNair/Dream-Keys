@@ -14,8 +14,8 @@ if(isset($_GET['q'])){
 $conn = mysqli_connect($s,$u,$p,$db);
 
     $word = "%".$q."%";
-    $query = $conn -> prepare("Select * from property where location LIKE ?");
-    $query->bind_param("s", $word);
+    $query = $conn -> prepare("Select * from property where location LIKE ? OR street LIKE ?");
+    $query->bind_param("ss", $word,$word);
     $query -> execute();
     $result = $query -> get_result();
     if($result -> num_rows > 0){

@@ -18,6 +18,9 @@ let builtYearEl = document.querySelector('#built-year');
 let bathsEl = document.querySelector('#baths');
 let bedsEl = document.querySelector('#bedrooms');
 let imageEl = document.querySelector('#image-url');
+let videoEl = document.querySelector('#video-url');
+let priceEl = document.querySelector('#price');
+
 let addressEl = document.querySelector('#address');
 let pincodeEl = document.querySelector('#pincode');
 let streetEl = document.querySelector('#street');
@@ -42,6 +45,7 @@ let property = {
   baths: 0,
   beds:0,
   image_url,
+  video_url:'',
   address: "",
   zipcode: 0,
   street: "",
@@ -50,7 +54,8 @@ let property = {
   long: 0.0,
   state: "",
   about:"",
-  transaction:"Sale"
+  transaction:"Sale",
+  price: 0
 };
 
 const request = new XMLHttpRequest();
@@ -123,7 +128,7 @@ document.querySelector('#form-1-btn').addEventListener('click',function(e){
 
 owner.firstName = firstNameEl.value;
 owner.lastName = lastNameEl.value;
-owner.fullName = owner.firstName + owner.lastName;
+owner.fullName = owner.firstName + ' ' + owner.lastName;
 owner.email = emailEl.value;
 owner.phone = Number(phoneEl.value); 
 
@@ -148,22 +153,30 @@ document.querySelector('#form-2-btn').addEventListener('click',function(e){
     property.builtYear = Number(builtYearEl.value);
     property.baths = Number(bathsEl.value);
     property.beds = Number(bedsEl.value);
+    property.price = Number(priceEl.value);
 
-    if(validate(carpetAreaEl.value) && validate(builtYearEl.value) && validate(bathsEl.value) && validate(bedsEl.value)){
+    if(validate(carpetAreaEl.value) && validate(builtYearEl.value) && validate(bathsEl.value) && validate(bedsEl.value) && validate(priceEl.value)){
     e.preventDefault();
     houseEl.value = '';
     carpetAreaEl.value = '';
     builtYearEl.value = '';
     bathsEl.value = '';
     bedsEl.value = '';
+    priceEl.value = '';
     container2.classList.add("hidden");
     container3.classList.remove("hidden");  
     }})
 
 document.querySelector('.upload-btn').addEventListener('click',function(e){
   e.preventDefault();
-  image_url.push(imageEl.value);
+  if(imageEl.value){
+  property.image_url.push(imageEl.value);
   imageEl.value = '';
+  } 
+  if(videoEl.value){
+    property.video_url = videoEl.value;
+    videoEl.value = ''
+  }
   document.querySelector('.images-preview').innerHTML = '';
     if(image_url.length){
       for (image of image_url){

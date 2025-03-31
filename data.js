@@ -22,7 +22,7 @@ request.addEventListener('load',function(){
       </svg>
       
       
-      <img src=${property.image_url}
+      <img src=${property.image_url.split('|')[0]}
       alt="property image"
       class="property-img"
       width="100"

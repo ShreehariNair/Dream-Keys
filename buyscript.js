@@ -50,21 +50,19 @@ request.addEventListener('load',function(){
     <div id="owner-card">
         <p id="title">Owner Details</p>
         <div class="owner-info">
-          <img src="assets/owner-img.jpg" alt="Portrait of Peter Parker" class="rounded-img" width="70" height="70">
           <div class="owner-name-job">
             <p id="owner-name">${property[0].owner}</p>
           </div>
         </div>
         <div class="owner-details">
-          <i class='bx bx-lock-alt XL-icon'></i>
-          <span class="hidden-message">The user allows only selected users to know their details</span>
+          <i class="ph-duotone ph-phone"></i>
         </div>
-        <form class="quotation-form">
-          <input type="number" class="quotation-input">
-          <button class="large-btn">Quote</button>
-        </form>
-      </div>
-    `;
+        </div>
+        `;
+        // <form class="quotation-form">
+        //   <input type="number" class="quotation-input">
+        //   <button class="large-btn">Quote</button>
+        // </form>
     
     document.querySelector('.container').insertAdjacentHTML('afterbegin',content);
     var map = L.map('map').setView([property[0].lat, property[0].longitude], 13);
@@ -80,60 +78,60 @@ window.addEventListener('load',function(){
     request.send();
 })
 
-// let image = document.querySelector(".view-image");
+let image = document.querySelector(".view-image");
 
-// let preview1 = document.querySelector(".preview-1");
+let preview1 = document.querySelector(".preview-1");
 
-// let preview2 = document.querySelector(".preview-2");
+let preview2 = document.querySelector(".preview-2");
 
-// let preview3 = document.querySelector(".preview-3");
+let preview3 = document.querySelector(".preview-3");
 
-// let preview4 = document.querySelector(".preview-4");
+let preview4 = document.querySelector(".preview-4");
 
-// preview1.addEventListener("click", function () {
-//   image.src = preview1.src;
+preview1.addEventListener("click", function () {
+  image.src = preview1.src;
 
-//   preview1.classList.add("active-image");
+  preview1.classList.add("active-image");
 
-//   preview2.classList.remove("active-image");
+  preview2.classList.remove("active-image");
 
-//   preview3.classList.remove("active-image");
+  preview3.classList.remove("active-image");
 
-//   preview4.classList.remove("active-image");
-// });
+  preview4.classList.remove("active-image");
+});
 
-// preview2.addEventListener("click", function () {
-//   image.src = preview2.src;
+preview2.addEventListener("click", function () {
+  image.src = preview2.src;
 
-//   preview2.classList.add("active-image");
+  preview2.classList.add("active-image");
 
-//   preview1.classList.remove("active-image");
+  preview1.classList.remove("active-image");
 
-//   preview3.classList.remove("active-image");
+  preview3.classList.remove("active-image");
 
-//   preview4.classList.remove("active-image");
-// });
+  preview4.classList.remove("active-image");
+});
 
-// preview3.addEventListener("click", function () {
-//   image.src = preview3.src;
+preview3.addEventListener("click", function () {
+  image.src = preview3.src;
 
-//   preview3.classList.add("active-image");
+  preview3.classList.add("active-image");
 
-//   preview1.classList.remove("active-image");
+  preview1.classList.remove("active-image");
 
-//   preview2.classList.remove("active-image");
+  preview2.classList.remove("active-image");
 
-//   preview4.classList.remove("active-image");
-// });
+  preview4.classList.remove("active-image");
+});
 
-// preview4.addEventListener("click", function () {
-//   image.src = preview4.src;
+preview4.addEventListener("click", function () {
+  image.src = preview4.src;
 
-//   preview4.classList.add("active-image");
+  preview4.classList.add("active-image");
 
-//   preview1.classList.remove("active-image");
+  preview1.classList.remove("active-image");
 
-//   preview2.classList.remove("active-image");
+  preview2.classList.remove("active-image");
 
-//   preview3.classList.remove("active-image");
-// });
+  preview3.classList.remove("active-image");
+});

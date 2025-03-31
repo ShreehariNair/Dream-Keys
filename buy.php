@@ -33,19 +33,19 @@ session_start();
 
     <nav class="navbar">
       <div class="link">
-        <a href="home.html" class="nav-link">Home</a>
+        <a href="home.php" class="nav-link">Home</a>
         </div>
         <div class="link">
           <a href="about.html" class="nav-link">About us</a>
         </div>
         <div class="link">
-          <a href="index.html" class="nav-link">Buy</a>
+          <a href="index.php" class="nav-link">Buy</a>
         </div>
         <div class="link">
           <a href="rent.html" class="nav-link">Rent</a>
         </div>
         <div class="link">
-          <a href="sell.html" class="nav-link">Sell</a>
+          <a href="sell.php" class="nav-link">Sell</a>
         </div>
         <div class="link">
           <a href="contact.html" class="nav-link">Contact Us</a>
@@ -152,8 +152,6 @@ session_start();
                                 const profileImage = document.getElementById("profileImage");
                                 
                                 const profilePictureURL = "https://png.pngtree.com/png-clipart/20191121/original/pngtree-user-icon-png-image_5097430.jpg"; 
-                                profileImage.src = profilePictureURL;
-                                profileImage.style.display = "block"; 
                                 userProfile.style.display = "flex";</script>';
         } else if(isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['email'])){
             global $username,$password; 
@@ -238,59 +236,7 @@ session_start();
       </button>
     </form>
     <div class="container">
-      <!-- <div class="property-tab">
-        <div class="image-section">
-          <video src="assets/inside-view.mp4" type="video/mp4" autoplay="true" alt="House image" width="750" height="440" class="view-image"></video>
-          <div class="image-preview-box">
-            <img src="https://t4.ftcdn.net/jpg/03/71/92/67/240_F_371926762_MdmDMtJbXt7DoaDrxFP0dp9Nq1tSFCnR.jpg"
-              width="70" height="60" alt="house image" class="preview-1">
-            <img src="assets/image.png" width="70" height="60" class="active-image preview-2" alt="house-image">
-            <img src="https://t4.ftcdn.net/jpg/10/07/05/19/240_F_1007051990_TsJYcKSjbFRRF2RQmcwAEk0sPDUAyUqE.jpg"
-              width="70" height="60" alt="house image" class="preview-3">
-            <img src="https://t3.ftcdn.net/jpg/06/39/42/46/240_F_639424665_YGf5eZXs70GJQyKRHYS51uxg4daD8LFL.jpg"
-              width="70" height="60" alt="house image" class="preview-4">
-          </div>
-        </div>
-        <div class="property-details">
-          <p id="property-price">&#8377;600,000</p>
-          <span class="location">
-            <i class="ph ph-map-pin medium-icon"></i>Sibsey Road, Boston PE21</span>
-          <span class="beds-baths">
-            <span class="beds"><i class="ph-fill ph-bed medium-icon"></i>3 beds</span>
-
-            <span class="bath">
-              <i class="ph ph-bathtub medium-icon"></i>3 baths</span>
-          </span>
-          <hr>
-          <p class="about">About this home</p>
-          <div class="house-features">
-            <span id="sq-ft-cost"><i class="ph ph-ruler large-icon"></i>&#8377;500 per sq ft</span>
-            <span id="maintainance-fee"><i class="ph ph-currency-circle-dollar large-icon"></i>&#8377;1766 Monthly maintainance fee</span>
-          </div>
-        </div>
-        <div class="property-location">
-          <p id = "heading">Location</p>
-          <div id="map"></div>
-        </div>
-      </div> -->
-      <!-- <div id="owner-card">
-        <p id="title">Owner Details</p>
-        <div class="owner-info">
-          <img src="assets/owner-img.jpg" alt="Portrait of Peter Parker" class="rounded-img" width="70" height="70">
-          <div class="owner-name-job">
-            <p id="owner-name">Peter Parker</p>
-            <p id="owner-job">Tax Consultant at S&P Global</p>
-          </div>
-        </div>
-        <div class="owner-details">
-          <i class='bx bx-lock-alt XL-icon'></i>
-          <span class="hidden-message">The user allows only selected users to know their details</span>
-        </div>
-        <form class="quotation-form">
-          <input type="number" class="quotation-input">
-          <button class="large-btn">Quote</button>
-        </form>
-      </div> -->
+      
     </div>
   </main>
   <section id="contact">

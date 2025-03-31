@@ -145,8 +145,6 @@ session_start();
                                 const profileImage = document.getElementById("profileImage");
                                 
                                 const profilePictureURL = "https://png.pngtree.com/png-clipart/20191121/original/pngtree-user-icon-png-image_5097430.jpg"; 
-                                profileImage.src = profilePictureURL;
-                                profileImage.style.display = "block"; 
                                 userProfile.style.display = "flex";</script>';
         } else if(isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['email'])){
             global $username,$password; 

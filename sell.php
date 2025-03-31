@@ -25,19 +25,19 @@ session_start();
     
         <nav class="navbar">
             <div class="link">
-              <a href="home.html" class="nav-link">Home</a>
+              <a href="home.php" class="nav-link">Home</a>
               </div>
               <div class="link">
                 <a href="about.html" class="nav-link">About us</a>
               </div>
               <div class="link">
-                <a href="index.html" class="nav-link">Buy</a>
+                <a href="index.php" class="nav-link">Buy</a>
               </div>
               <div class="link">
                 <a href="rent.html" class="nav-link">Rent</a>
               </div>
               <div class="link">
-                <a href="sell.html" class="nav-link">Sell</a>
+                <a href="sell.php" class="nav-link">Sell</a>
               </div>
               <div class="link">
                 <a href="contact.html" class="nav-link">Contact Us</a>
@@ -49,7 +49,7 @@ session_start();
             <button class="close-btn"></button>
             <div class="link">
               <i class='bx bx-home nav-icon'></i>
-              <a href="home.html" class="nav-link">Home</a>
+              <a href="home.php" class="nav-link">Home</a>
             </div>
             <div class="link">
               <i class="ph ph-building nav-icon"></i>
@@ -58,7 +58,7 @@ session_start();
             </div>
             <div class="link">
               <i class="ph ph-money nav-icon"></i>
-              <a href="buy.html" class="nav-link">Buy</a>
+              <a href="buy.php" class="nav-link">Buy</a>
             </div>
             <div class="link">
               <img src="https://img.icons8.com/?size=80&id=qC3UqYpJ9XXn&format=png" width="24" height="21">
@@ -66,7 +66,7 @@ session_start();
             </div>
             <div class="link">
               <i class="ph ph-key nav-icon"></i>
-              <a href="sell.html" class="nav-link">Sell</a>
+              <a href="sell.php" class="nav-link">Sell</a>
             </div>
             <div class="link">
               <i class="ph ph-phone nav-link"></i>
@@ -145,8 +145,6 @@ session_start();
                                 const profileImage = document.getElementById("profileImage");
                                 
                                 const profilePictureURL = "https://png.pngtree.com/png-clipart/20191121/original/pngtree-user-icon-png-image_5097430.jpg"; 
-                                profileImage.src = profilePictureURL;
-                                profileImage.style.display = "block"; 
                                 userProfile.style.display = "flex";</script>';
         } else if(isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['email'])){
             global $username,$password; 
@@ -277,6 +275,10 @@ session_start();
         <div class="input-container" id="beds-container">
           <label>Bedrooms</label>
           <input type="number" class="input-box" id="bedrooms" required>
+        </div>  
+        <div class="input-container" id="price-container">
+          <label>Estimated Price</label>
+          <input type="number" class="input-box" id="price" required>
         </div>  
           <button id="form-2-btn">Next</button>
         </form>
