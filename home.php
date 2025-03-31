@@ -30,144 +30,125 @@ session_start();
     </ul>
     
     <?php
-    $username = '';
-    $password = '';
-    $email = '';
-    $error = '';
-    
-    if(isset($_SESSION['status'])){
-        echo $_SESSION['status'];
-        $_SESSION['status'] = '';
-    }
-    if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
-        session_reset();
-        session_destroy();
-        header('Location: '.'home.php');
-    }
-    if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-        
-        echo '<form method="POST" action="home.php"><div class="h-btn">
+
+$username = '';
+$password = '';
+$email = '';
+$error = '';
+
+if (isset($_SESSION['status'])) {
+    echo $_SESSION['status'];
+    $_SESSION['status'] = '';
+}
+
+if (isset($_POST['signout']) && $_POST['signout'] == 'true') {
+    session_reset();
+    session_destroy();
+    header('Location: home.php');
+    exit();
+}
+
+if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+    echo '<form method="POST" action="home.php"><div class="h-btn">
         <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div></form>
         <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button>';
-    } else {
+} else {
     echo '<div class="h-btn">
-    <button onclick="show()" id="loginButton" class="h-btn1">Login</button>
-    <button onclick="showregister()" id="signUpButton" class="h-btn2">Sign Up</button>
+        <button onclick="show()" id="loginButton" class="h-btn1">Login</button>
+        <button onclick="showregister()" id="signUpButton" class="h-btn2">Sign Up</button>
     </div>
-    
+
     <div id="overlay" style="display: none;">
-            <div class="credentials">
+        <div class="credentials">
             <div class="login" style="display: none;">
-            <form class="form" method="POST" action="home.php">
-            <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
-            <h1 class="head1">LOGIN</h1>
-            <label class="mylabel">Username</label>
-            <input type="text" class="myinput" name="username" id="username" required>
-            <label class="mylabel">Password</label>
-            <input type="password" class="myinput" name="pw" id="password" required>
-            <button id="mybtn1" class="mybutton">Login</button>
-            </form>
+                <form class="form" method="POST" action="home.php">
+                    <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
+                    <h1 class="head1">LOGIN</h1>
+                    <label class="mylabel">Username</label>
+                    <input type="text" class="myinput" name="username" id="username" required>
+                    <label class="mylabel">Password</label>
+                    <input type="password" class="myinput" name="pw" id="password" required>
+                    <button id="mybtn1" class="mybutton">Login</button>
+                </form>
             </div>
             <div class="register" style="display: none;">
-            <form class="form" method="POST" action="home.php">
-            <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
-                        <h1 class="head1">SIGN UP</h1>
-                        <label class="mylabel">Username</label>
-                        <input type="text" class="myinput" name="username" id="user" required>
-                        <label class="mymaillabel">Email Id</label>
-                        <input type="email" class="myinput" name="email" id="email" required>
-                        <label class="mylabel">Password</label>
-                        <input type="password" class="myinput" name="pw" id="pw" required>
-                        <button id="mybtn2" class="mybutton">Create Account</button>
-                        </form>
-                        </div>
-                        </div>
-                        </div>';
-    }
-                        if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-                            echo '<script>                            
-                                // const username=document.getElementById("usernameInput")?.value||"User";
-                                const userProfile=document.getElementById("userProfile");
-                                const profileImage = document.getElementById("profileImage");
-                                
-                                const profilePictureURL = "https://png.pngtree.com/png-clipart/20191121/original/pngtree-user-icon-png-image_5097430.jpg"; 
-                                profileImage.src = profilePictureURL;
-                                profileImage.style.display = "block"; 
-                                userProfile.style.display = "flex";</script>';
-        } else if(isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['email'])){
-            global $username,$password; 
-            $username = $_POST['username'];
-            $password = $_POST['pw'];
-            $email = $_POST['email'];
-            $s = "localhost";
-            $u = "DBA";
-            $p = "dba";
-            $db = "dream keys";
-
-            $user = [];
-            $conn = mysqli_connect($s,$u,$p,$db);
-            $query = $conn -> prepare("Select * from users where user_id = ? LIMIT 1;");
-            $query -> bind_param('s',$username);
-            $query -> execute();
-            $result = $query -> get_result();
-            while($row = $result -> fetch_assoc()){
-                array_push($user,$row);
-            };
-            $query -> close();
-            $conn->close();
-            if(!empty($user) && $username == $user[0]['user_id']){
-                $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>User Id already exists</p></div>';
-            } else {
-                $s = "localhost";
-                $u = "DBA";
-                $p = "dba";
-                $db = "dream keys";
-                global $username,$password,$email;
-                $hashed_pw = password_hash($password,PASSWORD_DEFAULT);
-                $conn = mysqli_connect($s,$u,$p,$db);
-                $query = $conn -> prepare("Insert into users (user_id,hashed_password,email) VALUES (?,?,?)");
-                $query -> bind_param('sss',$username,$hashed_pw,$email);
-                $query -> execute();
-                $query -> close();
-                $conn->close();
-                $_SESSION['status'] = '<div class="message"><i class="ph ph-check-circle"></i><p>User Registered successfully</p></div>';
-            }
-            }    
-        else if(isset($_POST['username']) && isset($_POST['pw']) && !isset($_POST['email'])){
-        
-        global $username,$password; 
-        $username = $_POST['username']; 
-        $password = $_POST['pw'];
-        $s = "localhost";
-        $u = "DBA";
-        $p = "dba";
-        $db = "dream keys";
-
-        $user = [];
-        $conn = mysqli_connect($s,$u,$p,$db);
-        $query = $conn -> prepare("Select * from users where user_id = ?");
-        $query -> bind_param('s',$username);
-        $query -> execute();
-        $result = $query -> get_result();
-        while($row = $result -> fetch_assoc()){
-            array_push($user,$row);
-        };
-        $query -> close();
-        $conn->close();
-
-        if(!empty($user) && password_verify($password,$user[0]['hashed_password'])){
-            $_SESSION['username'] = $user[0]['user_id'];
-            $_SESSION['password'] = $user[0]['hashed_password'];
-                $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                header('Location: '.'home.php');
-        } else {
-            $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
-            header('Location: '.'home.php');
-            
-            
+                <form class="form" method="POST" action="home.php">
+                    <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
+                    <h1 class="head1">SIGN UP</h1>
+                    <label class="mylabel">Username</label>
+                    <input type="text" class="myinput" name="username" id="user" required>
+                    <label class="mymaillabel">Email Id</label>
+                    <input type="email" class="myinput" name="email" id="email" required>
+                    <label class="mylabel">Password</label>
+                    <input type="password" class="myinput" name="pw" id="pw" required>
+                    <button id="mybtn2" class="mybutton">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>';
 }
+
+if (isset($_SESSION['username']) && isset($_SESSION['password'])) {
+    echo '<script>
+        const userProfile = document.getElementById("userProfile");
+        const profileImage = document.getElementById("profileImage");
+        const profilePictureURL = "https://png.pngtree.com/png-clipart/20191121/original/pngtree-user-icon-png-image_5097430.jpg"; 
+        profileImage.src = profilePictureURL;
+        profileImage.style.display = "block"; 
+        userProfile.style.display = "flex";
+    </script>';
+} elseif (isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['email'])) {
+    $username = $_POST['username'];
+    $password = $_POST['pw'];
+    $email = $_POST['email'];
+
+    $conn = pg_connect("host=postgresql://root:8pxoc8Ej4X4S06eaAu0DW64EBlX5V95y@dpg-cvkmvmqdbo4c73f8rcrg-a.oregon-postgres.render.com/dreamkeys dbname=dreamkeys user=root password=8pxoc8Ej4X4S06eaAu0DW64EBlX5V95y");
+    if (!$conn) {
+        die("Connection failed: " . pg_last_error());
+    }
+
+    $result = pg_query_params($conn, "SELECT * FROM users WHERE user_id = $1 LIMIT 1", array($username));
+    $user = pg_fetch_assoc($result);
+
+    if (!empty($user) && $username == $user['user_id']) {
+        $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>User Id already exists</p></div>';
+    } else {
+        $hashed_pw = password_hash($password, PASSWORD_DEFAULT);
+        $insert_result = pg_query_params($conn, "INSERT INTO users (user_id, hashed_password, email) VALUES ($1, $2, $3)", array($username, $hashed_pw, $email));
+        if ($insert_result) {
+            $_SESSION['status'] = '<div class="message"><i class="ph ph-check-circle"></i><p>User Registered successfully</p></div>';
+        } else {
+            $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Registration failed</p></div>';
+        }
+    }
+    pg_close($conn);
+} elseif (isset($_POST['username']) && isset($_POST['pw']) && !isset($_POST['email'])) {
+    $username = $_POST['username'];
+    $password = $_POST['pw'];
+
+    $conn = pg_connect("host=postgresql://root:8pxoc8Ej4X4S06eaAu0DW64EBlX5V95y@dpg-cvkmvmqdbo4c73f8rcrg-a.oregon-postgres.render.com/dreamkeys dbname=dreamkeys user=root password=8pxoc8Ej4X4S06eaAu0DW64EBlX5V95y");    
+    if (!$conn) {
+        die("Connection failed: " . pg_last_error());
+    }
+
+    $result = pg_query_params($conn, "SELECT * FROM users WHERE user_id = $1", array($username));
+    $user = pg_fetch_assoc($result);
+
+    if (!empty($user) && password_verify($password, $user['hashed_password'])) {
+        $_SESSION['username'] = $user['user_id'];
+        $_SESSION['password'] = $user['hashed_password'];
+        $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p>You have successfully logged in</p></div>';
+        header('Location: home.php');
+        exit();
+    } else {
+        $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
+        header('Location: home.php');
+        exit();
+    }
+    pg_close($conn);
 }
 ?>
+
 
         <!-- <a href="#" class="h-btn2">Sign Up</a> -->
         <div class="bx bx-menu" id="menu-icon"></div>
