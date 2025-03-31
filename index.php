@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,7 +84,6 @@
           </div>
         </nav>
         <?php
-    session_start();
     $username = '';
     $password = '';
     $email = '';
