@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -76,7 +79,6 @@
             </div>
           </nav>
 <?php
-    session_start();
     if(!(isset($_SESSION['username']) && isset($_SESSION['password']))){
       $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Please log in to sell property</p></div>';
       echo '<script>location.href="home.php"</script>';

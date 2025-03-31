@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +30,7 @@
     </ul>
     
     <?php
-    session_start();
+    
     $username = '';
     $password = '';
     $email = '';
