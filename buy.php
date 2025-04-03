@@ -42,13 +42,13 @@ session_start();
           <a href="index.php" class="nav-link">Buy</a>
         </div>
         <div class="link">
-          <a href="rent.html" class="nav-link">Rent</a>
+          <a href="rent.php" class="nav-link">Rent</a>
         </div>
         <div class="link">
           <a href="sell.php" class="nav-link">Sell</a>
         </div>
         <div class="link">
-          <a href="contact.html" class="nav-link">Contact Us</a>
+          <a href="contact.php" class="nav-link">Contact Us</a>
         </div>
       </nav>
       <!-- <div class="user">
@@ -236,7 +236,52 @@ session_start();
       </button>
     </form>
     <div class="container">
-      
+    <div class="property-tab">
+    <div class="image-section">
+    <img src='#' alt="House image" width="750" height="440" class="view-image">
+    <div class="image-preview-box">
+    <img src='#' width="70" height="60" alt="house image" class="active-image preview-1">
+    <img src='#' width="70" height="60" class="preview-2" alt="house-image">
+    <img src='#' width="70" height="60" alt="house image" class="preview-3">
+    <img src='#' width="70" height="60" alt="house image" class="preview-4">
+    </div>
+    </div>
+    <div class="property-details">
+    <p>Expected price</p>
+    <p id="property-price"></p>
+    <span class="location">
+    <i class="ph ph-map-pin medium-icon"></i><p id="location"></p></span>
+    <span class="beds-baths">
+    <span class="beds"><i class="ph-fill ph-bed medium-icon"></i><p id="beds-count"></p></span>
+    
+    <span class="bath">
+    <i class="ph ph-bathtub medium-icon"></i><p id='baths-count'></p></span>
+    </span>
+    <hr>
+    <p class="about">About this home</p>
+    <div class="house-features">
+    <span id="sq-ft-cost"><i class="ph ph-ruler large-icon"></i>&#8377;${Math.ceil(property[0].price / property[0].size)} per sq ft</span>
+    <p class="about-line">${property[0].about}</p>
+    </div>
+    </div>
+    <div class="property-location">
+    <p class = "about"><i class="ph ph-map-pin"></i>Location
+    <div id="map"></div>
+    
+    </p>
+    </div>
+    </div>
+    <div id="owner-card">
+        <p id="title">Owner Details</p>
+        <div class="owner-info">
+          <div class="owner-name-job">
+            <p id="owner-name">${property[0].owner}</p>
+          </div>
+        </div>
+        <div class="owner-details">
+          <i class="ph-duotone ph-phone"></i><p>${property[0].phone}</p>
+        </div>
+        </div>
     </div>
   </main>
   <section id="contact">
@@ -283,23 +328,11 @@ session_start();
   <footer class="footer-privacy">
     <span class="footer-copy"> &#169; DreamKeys. All rights reserved </span>
   </footer>
-  <!-- <script>
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-var map = L.map('map').setView([51.505, -0.09], 13);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-var marker = L.marker([51.5, -0.09]).addTo(map);
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
-  </script> -->
+  
   <script src="buyscript.js"></script>
   <script src="menu.js"></script>
   <script src="auth.js"></script>
+  <script src="preview.js"></script>
 
   <style>
     * {

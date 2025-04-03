@@ -24,9 +24,9 @@ session_start();
         <li><a href="home.php">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="index.php">Buy</a></li>
-        <li><a href="rent.html">Rent</a></li>
+        <li><a href="rent.php">Rent</a></li>
         <li><a href="sell.php">Sell</a></li>
-        <li><a href=#contact>Contact Us</a></li>
+        <li><a href="contact.php">Contact Us</a></li>
     </ul>
     
     <?php
@@ -186,7 +186,7 @@ session_start();
                </div>
         </div>
         <div class="home-img">
-            <video src="Video2.mp4" id="myvideo">
+            <video src="Video2.mp4" id="myvideo" width="900" height="900" autoplay loop>Your browser does not support the video tag</video>
         </div>
     </section>
   <section class="feature">

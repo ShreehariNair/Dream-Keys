@@ -4,7 +4,6 @@ let passwordEl = document.querySelector('#password');
 let emailEl= document.querySelector('#email');
 let newuserEl = document.querySelector('#user');
 let pwEl = document.querySelector('#pw'); 
-const request = new XMLHttpRequest();
 
 function validate(value){
     if(value == '' || value == 0 || value.length == 0){

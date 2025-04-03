@@ -353,7 +353,7 @@ session_start();
   <script src="view.js">
     </script>
       <script src="menu.js"></script>
-      <script src="data.js"></script>
+      <script src="rentdata.js"></script>
 
 </body>
 </html>

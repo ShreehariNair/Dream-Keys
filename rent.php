@@ -12,12 +12,12 @@
             <img src="logonew.jpg">
         </a>
         <ul class="navbar">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li><a href="about.html">About Us</a></li>
-            <li><a href="buy1.html">Buy</a></li>
-            <li><a href="rent.html"><u>Rent</u></a></li>
-            <li><a href="sell.html">Sell</a></li>
-            <li><a href=#>Contact Us</a></li>
+            <li><a href="buy.php">Buy</a></li>
+            <li><a href="rent.php"><u>Rent</u></a></li>
+            <li><a href="sell.php">Sell</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
         </ul>
     
         <div class="h-btn">

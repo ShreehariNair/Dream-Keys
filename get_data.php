@@ -1,20 +1,23 @@
 <?php 
-$s = "localhost";
-$u = "DBA";
-$p = "dba";
-$db = "dream keys";
+$s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+$u = "avnadmin";
+$p = "AVNS_ch4yIylQ2kinVTCYSxk";
+$db = "defaultdb";
+$port = 11316;
 $q = '';
+
 $min_price = 0;
 $max_price = 0;
 $properties = array();
-
 if(isset($_GET['q'])){
     $q = $_GET['q'];
-
-$conn = mysqli_connect($s,$u,$p,$db);
+    $type = 'Sale';
+    
+    $conn = mysqli_connect($s,$u,$p,$db,$port);
 
     $word = "%".$q."%";
     $query = $conn -> prepare("Select * from property where location LIKE ? OR street LIKE ?");
+    }
     $query->bind_param("ss", $word,$word);
     $query -> execute();
     $result = $query -> get_result();
@@ -26,7 +29,7 @@ $conn = mysqli_connect($s,$u,$p,$db);
     echo json_encode($properties);
     $query -> close();
     $conn -> close();
-}
+
 
 if(isset($_GET['minprice']) && isset($_GET['maxprice'])){
     $min_price = $_GET['minprice'];
@@ -34,7 +37,7 @@ if(isset($_GET['minprice']) && isset($_GET['maxprice'])){
 
     $conn = mysqli_connect($s,$u,$p,$db);
     $query = $conn -> prepare("Select * from property where price > ? and price < ?");
-    $query->bind_param("ii", $min_price,$max_price);
+    $query->bind_param("ii", $min_price, $max_price);
     $query->execute();
     $result = $query -> get_result();
     if($result -> num_rows > 0){

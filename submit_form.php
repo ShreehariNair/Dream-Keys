@@ -1,12 +1,11 @@
 <?php
 
-$servername = "localhost";
-$username = "root";  
-$password = "";  
-$database = "dream keys";  
+session_start();
 
+if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-$conn = new mysqli($servername, $username, $password, $database);
+$conn=new mysqli("localhost","root","","dream keys");
+
 
 
 if ($conn->connect_error) {
@@ -14,24 +13,51 @@ if ($conn->connect_error) {
 }
 
 
-$name = $_POST['Name'];
-$email = $_POST['Email'];
-$message = $_POST['Message'];
+$name = htmlspecialchars(trim($_POST["Name"]));
+$email = htmlspecialchars(trim($_POST["Email"]));
+$message = htmlspecialchars(trim($_POST["Message"]));
 
+$errors=[];
 
-$name = mysqli_real_escape_string($conn, $name);
-$email = mysqli_real_escape_string($conn, $email);
-$message = mysqli_real_escape_string($conn, $message);
-
-
-$sql = "INSERT INTO contact_messages (name, email, message) VALUES ('$name', '$email', '$message')";
-
-if(mysqli_query($conn,$sql)){
-    header("Location: success.html");
-    exit();
-}else{
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+if(empty($name)){
+    $errors['name']="Please enter your name.";
 }
 
+if(empty($email)){
+    $errors['email']="Please enter your email.";
+}elseif(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+    $errors['email']="Invalid Email Format.";
+}
+
+if(empty($message)){
+    $errors['message']="Please enter a message.";
+}elseif(strlen($message)<10){
+    $errors['message']="Message must be at least 10 characters long";
+}
+
+if(!empty($errors)){
+    $_SESSION['errors']=$errors;
+    $_SESSION['old_data']=$_POST;
+    header("Location: contact.php");
+    exit();
+}
+
+
+$stmt =$conn->prepare("INSERT INTO contact_messages (name, email, message) VALUES (?,?,?)");
+$stmt->bind_param("sss",$name,$email,$message);
+
+if ($stmt->execute()) {
+    header("Location: success.html");
+    exit();
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
 $conn->close();
+} else {
+header("Location: contact.php");
+exit();
+}
+
 ?>
