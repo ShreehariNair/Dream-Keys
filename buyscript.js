@@ -1,3 +1,4 @@
+'use strict';
 let image = document.querySelector(".view-image");
 
 let preview1 = document.querySelector(".preview-1");
@@ -11,8 +12,15 @@ let priceEl = document.querySelector('#property-price');
 let locationEl = document.querySelector('#location');
 let bedsEl = document.querySelector('#beds-count');
 let bathsEl = document.querySelector('#baths-count');
-
+let roomsEl = document.querySelector('#rooms-count');
+let nameEl = document.querySelector('#owner-name');
+let phoneEl = document.querySelector('#owner-phone');
+let emailEl = document.querySelector('#owner-email');
+let property;
 const header=document.querySelector("header")
+let video = document.createElement('video');
+video.classList.add('view-image');
+video.classList.add('video');
 
 window.addEventListener("scroll", function(){
     header.classList.toggle("sticky",window.scrollY>80)
@@ -24,10 +32,25 @@ console.log(id);
 
 const request = new XMLHttpRequest();
 request.addEventListener('load',function(){
-    
-    let property = JSON.parse(this.responseText);
+
+    property = JSON.parse(this.responseText);
     let image_url = property[0].image_url.split('|');
-    image.src=image_url[0];
+    if(property[0].video_url){
+        video.src=property[0].video_url;
+        video.width = 750;
+        video.height = 440;
+        
+        image.replaceWith(video);
+        video.addEventListener("mouseenter",function(){
+            video.play();
+        });
+        video.addEventListener("mouseleave", function () {
+            video.pause(); 
+          });
+        ;
+    } else {
+        image.src=image_url[0];
+    }
     for(let i = 0; i < 4; i++){
       document.querySelector(`.preview-${i+1}`).src=image_url[i];
     }
@@ -35,6 +58,8 @@ request.addEventListener('load',function(){
     locationEl.textContent = property[0].location;
     bedsEl.textContent = property[0].beds + ' beds';
     bathsEl.textContent = property[0].baths + ' baths'; 
+    roomsEl.textContent = property[0].rooms + ' rooms';
+    nameEl.textContent = property[0].owner;
 
     // const content =  `<div class="property-tab">
     // <div class="image-section">
@@ -103,3 +128,65 @@ window.addEventListener('load',function(){
     request.send();
 })
 
+
+preview1.addEventListener("click", function () {
+    if(!image.classList.contains('video')){
+      image.replaceWith('video');
+      image.src=property[0].video_url;
+      image.width = 750;
+      image.height = 440;
+     }
+    image.src = preview1.src;
+  
+    preview1.classList.add("active-image");
+  
+    preview2.classList.remove("active-image");
+  
+    preview3.classList.remove("active-image");
+  
+    preview4.classList.remove("active-image");
+  });
+  
+  preview2.addEventListener("click", function () {
+    
+    image.replaceWith("image");
+    image.src = preview2.src;
+  
+    preview2.classList.add("active-image");
+  
+    preview1.classList.remove("active-image");
+  
+    preview3.classList.remove("active-image");
+  
+    preview4.classList.remove("active-image");
+  });
+  
+  preview3.addEventListener("click", function () {
+    image.replaceWith("image");
+
+    image.src = preview3.src;
+  
+    preview3.classList.add("active-image");
+  
+    preview1.classList.remove("active-image");
+  
+    preview2.classList.remove("active-image");
+  
+    preview4.classList.remove("active-image");
+  });
+  
+  preview4.addEventListener("click", function () {
+    image.replaceWith("image");
+
+    image.src = preview4.src;
+  
+    preview4.classList.add("active-image");
+  
+    preview1.classList.remove("active-image");
+  
+    preview2.classList.remove("active-image");
+  
+    preview3.classList.remove("active-image");
+  });
+  
+  

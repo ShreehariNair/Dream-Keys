@@ -35,9 +35,6 @@ session_start();
           <a href="index.php" class="nav-link">Buy</a>
         </div>
         <div class="link">
-          <a href="rent.php" class="nav-link">Rent</a>
-        </div>
-        <div class="link">
           <a href="sell.php" class="nav-link">Sell</a>
         </div>
         <div class="link">
@@ -64,10 +61,6 @@ session_start();
           <div class="link">
             <i class="ph ph-money nav-icon"></i>
             <a href="index.html" class="nav-link">Buy</a>
-          </div>
-          <div class="link">
-            <img src="https://img.icons8.com/?size=80&id=qC3UqYpJ9XXn&format=png" width="24" height="21">
-            <a href="rent.html" class="nav-link">Rent</a>
           </div>
           <div class="link">
             <i class="ph ph-key nav-icon"></i>
@@ -289,12 +282,12 @@ session_start();
             </div>
         </div>
         <div class="properties flex">
-          <div class="empty-state">
+          <!-- <div class="empty-state">
             <img src="assets/empty-state.svg" width="500" height="500" alt="empty-state" style="width: 32rem; height: 32rem;">
-            </div>
-          </div>
+            </div> -->
+            
       </div>
-      
+</div>
       <section id="contact">
         <div class="contact-content">
          <img src="assets/logo.png" alt="logo">

@@ -1,16 +1,15 @@
 <?php
-$s = "localhost";
-$u = "DBA";
-$p = "dba";
-$db = "dream keys";
+$s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+$u = "avnadmin";
+$p = "AVNS_ch4yIylQ2kinVTCYSxk";
+$db = "defaultdb";
+$port = 11316;
 $id = 0;
 
 if(isset($_GET['house'])){
     $id = $_GET['house'];
-    $conn = mysqli_connect($s,$u,$p,$db);
-// if (!$conn) {
-    //     die("Connection failed: ". mysqli_connect_error());
-    // }
+    $conn = mysqli_connect($s,$u,$p,$db,$port);
+
     $query = $conn -> prepare("Select * from property where property_id = ?");
     $query->bind_param("i", $id);
     $query -> execute();

@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
 let image = document.querySelector(".view-image");
 
 let preview1 = document.querySelector(".image-preview-box .preview-1");
@@ -10,6 +9,12 @@ let preview3 = document.querySelector(".image-preview-box .preview-3");
 let preview4 = document.querySelector(".image-preview-box .preview-4");
 
 preview1.addEventListener("click", function () {
+  if(property[0].video_url){
+    image.replaceWith(image);
+    image.src=property[0].video_url;
+    image.width = 750;
+    image.height = 440;
+  }
   image.src = preview1.src;
 
   preview1.classList.add("active-image");
@@ -22,6 +27,11 @@ preview1.addEventListener("click", function () {
 });
 
 preview2.addEventListener("click", function () {
+  if(property[0].video_url){
+    image.replaceWith(image);
+    image.width = 750;
+    image.height = 440;
+  }
   image.src = preview2.src;
 
   preview2.classList.add("active-image");
@@ -34,6 +44,11 @@ preview2.addEventListener("click", function () {
 });
 
 preview3.addEventListener("click", function () {
+  if(property[0].video_url){
+    image.replaceWith(image);
+    image.width = 750;
+    image.height = 440;
+  }
   image.src = preview3.src;
 
   preview3.classList.add("active-image");
@@ -46,6 +61,11 @@ preview3.addEventListener("click", function () {
 });
 
 preview4.addEventListener("click", function () {
+  if(property[0].video_url){
+    image.replaceWith(image);
+    image.width = 750;
+    image.height = 440;
+  }
   image.src = preview4.src;
 
   preview4.classList.add("active-image");
@@ -56,4 +76,4 @@ preview4.addEventListener("click", function () {
 
   preview3.classList.remove("active-image");
 });
-});
+

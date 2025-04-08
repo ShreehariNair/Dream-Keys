@@ -122,7 +122,7 @@ function validatePincode(pincode){
     return true;
   }
 }
-
+phoneEl.addEventListener('input',validatePhone(phoneEl.value));
 
 document.querySelector('#form-1-btn').addEventListener('click',function(e){
 

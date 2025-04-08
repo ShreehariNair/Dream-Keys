@@ -9,9 +9,8 @@ let minsizeEl = document.querySelector('#size-range-input #min-size');
 let maxsizeEl = document.querySelector('#size-range-input #max-size');
 
 request.addEventListener('load',function(){
-  // console.log(request.responseText);
+ 
   let properties = JSON.parse(this.responseText);
-    // console.log(this.responseText);
     propertiesEl.classList.remove('flex');
     propertiesEl.innerHTML='';
     for (let property of properties) {
@@ -48,10 +47,15 @@ request.addEventListener('load',function(){
             propertiesEl.insertAdjacentHTML('beforeend',propertyCard);
           }
         })
+
     document.querySelector('.search-btn').addEventListener('click',function(e){
           e.preventDefault();
+          propertiesEl.innerHTML = '';
+          propertiesEl.innerHTML = `<div class="loader-overlay">
+              <div class="loader">
+            </div>
+          </div>`;
           const q = document.querySelector('.search-bar').value;
-          const loader = `<span class="loader"></span>`;
           request.open('GET',`get_data.php?q=${q}`);
           request.send();
     })

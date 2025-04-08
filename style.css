@@ -172,10 +172,10 @@ form {
 
 .property-card {
   position: relative;
-  width: 19rem;
+  width: 17rem;
   height: 100%;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.3s ease-in-out;
 }
 .property-card:hover {
@@ -184,13 +184,14 @@ form {
 .property-img {
   border-radius: 10px 10px 0px 0px;
   width: 100%;
-  height: 50%;
+  height: 40%;
 }
 .property-info {
   padding: 0.9rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  font-size: 16px;
 }
 .property-name {
   font-weight: 500;
@@ -203,6 +204,8 @@ form {
 }
 
 .size {
+  position:absolute;
+  bottom: 20px;
   display: flex;
   gap: 0.2rem;
   background-color: rgba(217, 217, 217, 0.4);
@@ -225,6 +228,7 @@ form {
   height: 3rem; 
   border-radius: 5px;
   background-color: #1beed5;
+  font-size: 0.9rem;
 }
 .filter-box {
   border-radius: 5px;
@@ -298,6 +302,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  min-height: 550px;
 }
 
 
@@ -305,11 +310,12 @@ form {
   font-size: 1.3rem;
 }
 .floating-tag {
-  width:2.5em;
+  width:2em;
   height: 6.5em;
   position: absolute;
+  top: 0px;
   right: 1.25rem;
-  transform: translateY(-15px);
+  transform: translateY(-30px);
 }
 .empty-state{
   width: 23.75rem;
@@ -644,3 +650,28 @@ a {
 .h-btn2:hover{
   transform: translateX(-7px);
 }
+
+.loader-overlay {
+  grid-column: 1 / 5;
+  grid-row: 1/3;
+
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 

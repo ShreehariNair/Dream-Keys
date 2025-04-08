@@ -28,6 +28,10 @@ session_start();
 </head>
 
 <body>
+  <div class="loader-overlay">
+      <div class="loader">
+</div>
+  </div>
   <header>
     <img src="assets/logo.png" width="120" alt="logo" class="logo" height="100">
 
@@ -236,6 +240,7 @@ session_start();
       </button>
     </form>
     <div class="container">
+  
     <div class="property-tab">
     <div class="image-section">
     <img src='#' alt="House image" width="750" height="440" class="view-image">
@@ -247,7 +252,7 @@ session_start();
     </div>
     </div>
     <div class="property-details">
-    <p>Expected price</p>
+    <p id="expected-price">Expected price</p>
     <p id="property-price"></p>
     <span class="location">
     <i class="ph ph-map-pin medium-icon"></i><p id="location"></p></span>
@@ -256,7 +261,9 @@ session_start();
     
     <span class="bath">
     <i class="ph ph-bathtub medium-icon"></i><p id='baths-count'></p></span>
-    </span>
+  <p id='rooms-count'>rooms</p>
+  </span>
+  
     <hr>
     <p class="about">About this home</p>
     <div class="house-features">
@@ -273,13 +280,14 @@ session_start();
     </div>
     <div id="owner-card">
         <p id="title">Owner Details</p>
-        <div class="owner-info">
-          <div class="owner-name-job">
+          <div class="owner-name">
             <p id="owner-name">${property[0].owner}</p>
           </div>
+        <div class="owner-phone">
+          <i class="ph-duotone ph-phone"></i><p id='owner-phone'>${property[0].phone}</p>
         </div>
-        <div class="owner-details">
-          <i class="ph-duotone ph-phone"></i><p>${property[0].phone}</p>
+        <div class="owner-phone">
+          <i class="ph-duotone ph-phone"></i><p id='owner-email'>${property[0].phone}</p>
         </div>
         </div>
     </div>
@@ -332,7 +340,7 @@ session_start();
   <script src="buyscript.js"></script>
   <script src="menu.js"></script>
   <script src="auth.js"></script>
-  <script src="preview.js"></script>
+  <!-- <script src="preview.js"></script> -->
 
   <style>
     * {
