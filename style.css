@@ -17,7 +17,7 @@ body {
 }
 .logo img{
   width: 7.5rem;
-  height: 100%;
+  height: 6.25rem;
 }
 .icon {
   font-size: 1.12rem;
@@ -73,8 +73,8 @@ header {
   border-radius: 20px;
 }
 .nav-link {
-  text-decoration: none;
   color:#d6d6d6;
+  text-decoration: none;
   width: 100%;
   text-align: center;
 }
@@ -93,9 +93,9 @@ a {
 }
 nav {
   display: flex;
-  flex-basis: 41.125rem;
-  justify-content: space-between;
+  flex-basis: 41.128rem;
 }
+
 .nav-user {
   width: 18rem;
   display:flex;
@@ -135,9 +135,22 @@ main {
   pointer-events: auto;
   transform:translateX(0);
 }
+.mobile-link ,.mobile-link > a {
+  color:#000;
+  text-decoration: none;
+  text-align: center;
+}
+.mobile-link {
+  display:flex;
+  gap: 10px;
+}
+.mobile-nav-link {
+  font-size: 20px;
+}
 .mobile-nav {
   display:none;
 }
+
 form {
   display: flex;
 }
