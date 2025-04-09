@@ -33,11 +33,12 @@ session_start();
 </div>
   </div>
   <header>
-    <img src="assets/logo.png" width="120" alt="logo" class="logo" height="100">
-
-    <nav class="navbar">
-      <div class="link">
-        <a href="home.php" class="nav-link">Home</a>
+      <a href="index.html" class="logo">
+        <img src="assets/logo.png" width="120" alt="logo" height="100" class="logo-img">
+      </a>
+      <nav class="navbar">
+        <div class="link">
+          <a href="home.php" class="nav-link">Home</a>
         </div>
         <div class="link">
           <a href="about.html" class="nav-link">About us</a>
@@ -46,52 +47,10 @@ session_start();
           <a href="index.php" class="nav-link">Buy</a>
         </div>
         <div class="link">
-          <a href="rent.php" class="nav-link">Rent</a>
-        </div>
-        <div class="link">
           <a href="sell.php" class="nav-link">Sell</a>
         </div>
         <div class="link">
           <a href="contact.php" class="nav-link">Contact Us</a>
-        </div>
-      </nav>
-      <!-- <div class="user">
-        <button id="login-btn">Login</button>
-        <button id="signup-btn">Sign Up</button>
-      </div> -->
-      <button class="menu-btn">
-      </button>
-      <nav class="mobile-nav">
-        <button class="close-btn"></button>
-        <div class="link">
-          <i class='bx bx-home nav-icon'></i>
-          <a href="home.php" class="nav-link">Home</a>
-        </div>
-        <div class="link">
-          <i class="ph ph-building nav-icon"></i>
-          
-          <a href="#" class="nav-link">About us</a>
-        </div>
-        <div class="link">
-          <i class="ph ph-money nav-icon"></i>
-          <a href="index.php" class="nav-link">Buy</a>
-        </div>
-        <div class="link">
-          <img src="https://img.icons8.com/?size=80&id=qC3UqYpJ9XXn&format=png" width="24" height="21">
-          <a href="rent.html" class="nav-link">Rent</a>
-        </div>
-        <div class="link">
-          <i class="ph ph-key nav-icon"></i>
-          <a href="sell.php" class="nav-link">Sell</a>
-        </div>
-        <div class="link">
-          <i class="ph ph-phone nav-link"></i>
-          
-          <a href="#" class="nav-link">Contact Us</a>
-        </div>
-        <div class="user nav-user">
-          <button id="login-btn">Login</button>
-          <button id="signup-btn">Sign Up</button>
         </div>
       </nav>
       <?php
@@ -107,15 +66,16 @@ session_start();
     if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
         session_reset();
         session_destroy();
-        header('Location: '.'home.php');
-    }
+        header('Location: '.'buy.php?house='.$h);
+      }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
-      echo '<form method="POST" action="home.php"><div class="h-btn">
-      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div></form>
-      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button>';
+      echo '<form method="POST" action="index.php"><div class="h-btn">
+      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div>
+      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button></div></form>';
+
     } else {
-    echo '<div class="h-btn">
+    echo '<div class="h-btn user">
     <button onclick="show()" id="loginButton" class="h-btn1">Login</button>
     <button onclick="showregister()" id="signUpButton" class="h-btn2">Sign Up</button>
     </div>
@@ -123,7 +83,7 @@ session_start();
     <div id="overlay" style="display: none;">
             <div class="credentials">
             <div class="login" style="display: none;">
-            <form class="form" method="POST" action="home.php">
+            <form class="form" method="POST" action="index.php">
             <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
             <h1 class="head1">LOGIN</h1>
             <label class="mylabel">Username</label>
@@ -134,7 +94,7 @@ session_start();
             </form>
             </div>
             <div class="register" style="display: none;">
-            <form class="form" method="POST" action="home.php">
+            <form class="form" method="POST" action="index.php">
             <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
                         <h1 class="head1">SIGN UP</h1>
                         <label class="mylabel">Username</label>
@@ -222,16 +182,175 @@ session_start();
             $_SESSION['username'] = $user[0]['user_id'];
             $_SESSION['password'] = $user[0]['hashed_password'];
                 $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                header('Location: '.'home.php');
+                header('Location: '.'buy.php?house='.$h);
         } else {
             $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
-            header('Location: '.'home.php');
+            header('Location: '.'buy.php?house='.$h);
             
             
 }
 }
 ?>
-  </header>
+      <button class="menu-btn"></button>
+        <nav class="mobile-nav">
+          <button class="close-btn"></button>
+          <div class="mobile-link">
+            <i class='bx bx-home nav-icon'></i>
+            <a href="index.php" class="mobile-nav-link">Home</a>
+          </div>
+          <div class="mobile-link">
+            <i class="ph ph-building nav-icon"></i>
+            <a href="about.html" class="mobile-nav-link">About us</a>
+          </div>
+          <div class="mobile-link">
+            <i class="ph ph-money nav-icon"></i>
+            <a href="index.php" class="mobile-nav-link">Buy</a>
+          </div>
+          <div class="mobile-link">
+            <i class="ph ph-key nav-icon"></i>
+            <a href="sell.php" class="mobile-nav-link">Sell</a>
+          </div>
+          <div class="mobile-link">
+            <i class="ph ph-phone nav-icon"></i>
+            <a href="contact.php" class="mobile-nav-link">Contact Us</a>
+          </div>
+          <?php
+    $username = '';
+    $password = '';
+    $email = '';
+    $error = '';
+    $h = $_GET['house'];
+    if(isset($_SESSION['status'])){
+        echo $_SESSION['status'];
+        $_SESSION['status'] = '';
+    }
+    if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
+        session_reset();
+        session_destroy();
+        header('Location: '.'buy.php?house='.$h);
+      }
+    if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+        
+      echo '<form method="POST" action="index.php"><div class="mobile-h-btn">
+      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle" style="color:#121b25"></i></div>
+      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="mobile-h-btn1">Logout</button>
+      </div></form>';
+    } else {
+    echo '<div class="mobile-h-btn">
+    <button onclick="show()" id="loginButton" class="mobile-h-btn1">Login</button>
+    <button onclick="showregister()" id="signUpButton" class="mobile-h-btn2">Sign Up</button>
+    </div>
+    
+    <div id="overlay" style="display: none;">
+            <div class="credentials">
+            <div class="login" style="display: none;">
+            <form class="form" method="POST" action="index.php">
+            <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
+            <h1 class="head1">LOGIN</h1>
+            <label class="mylabel">Username</label>
+            <input type="text" class="myinput" name="username" id="username" required>
+            <label class="mylabel">Password</label>
+            <input type="password" class="myinput" name="pw" id="password" required>
+            <button id="mybtn1" class="mybutton">Login</button>
+            </form>
+            </div>
+            <div class="register" style="display: none;">
+            <form class="form" method="POST" action="index.php">
+            <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
+                        <h1 class="head1">SIGN UP</h1>
+                        <label class="mylabel">Username</label>
+                        <input type="text" class="myinput" name="username" id="user" required>
+                        <label class="mymaillabel">Email Id</label>
+                        <input type="email" class="myinput" name="email" id="email" required>
+                        <label class="mylabel">Password</label>
+                        <input type="password" class="myinput" name="pw" id="pw" required>
+                        <button id="mybtn2" class="mybutton">Create Account</button>
+                        </form>
+                        </div>
+                        </div>
+                        </div>';
+    }
+                        if(isset($_SESSION['username']) && isset($_SESSION['password'])){
+                            echo '<script>                            
+                                // const username=document.getElementById("usernameInput")?.value||"User";
+                                const userProfile=document.getElementById("userProfile");
+                                const profileImage = document.getElementById("profileImage");
+                                
+                                const profilePictureURL = "https://png.pngtree.com/png-clipart/20191121/original/pngtree-user-icon-png-image_5097430.jpg"; 
+                                userProfile.style.display = "flex";</script>';
+        } else if(isset($_POST['username']) && isset($_POST['pw']) && isset($_POST['email'])){
+            global $username,$password; 
+            $username = $_POST['username'];
+            $password = $_POST['pw'];
+            $email = $_POST['email'];
+            $s = "localhost";
+            $u = "DBA";
+            $p = "dba";
+            $db = "dream keys";
+
+            $user = [];
+            $conn = mysqli_connect($s,$u,$p,$db);
+            $query = $conn -> prepare("Select * from users where user_id = ? LIMIT 1;");
+            $query -> bind_param('s',$username);
+            $query -> execute();
+            $result = $query -> get_result();
+            while($row = $result -> fetch_assoc()){
+                array_push($user,$row);
+            };
+            $query -> close();
+            $conn->close();
+            if(!empty($user) && $username == $user[0]['user_id']){
+                $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>User Id already exists</p></div>';
+            } else {
+                $s = "localhost";
+                $u = "DBA";
+                $p = "dba";
+                $db = "dream keys";
+                global $username,$password,$email;
+                $hashed_pw = password_hash($password,PASSWORD_DEFAULT);
+                $conn = mysqli_connect($s,$u,$p,$db);
+                $query = $conn -> prepare("Insert into users (user_id,hashed_password,email) VALUES (?,?,?)");
+                $query -> bind_param('sss',$username,$hashed_pw,$email);
+                $query -> execute();
+                $query -> close();
+                $conn->close();
+                $_SESSION['status'] = '<div class="message"><i class="ph ph-check-circle"></i><p>User Registered successfully</p></div>';
+            }
+            }    
+        else if(isset($_POST['username']) && isset($_POST['pw']) && !isset($_POST['email'])){
+        
+        global $username,$password; 
+        $username = $_POST['username']; 
+        $password = $_POST['pw'];
+        $s = "localhost";
+        $u = "DBA";
+        $p = "dba";
+        $db = "dream keys";
+
+        $user = [];
+        $conn = mysqli_connect($s,$u,$p,$db);
+        $query = $conn -> prepare("Select * from users where user_id = ?");
+        $query -> bind_param('s',$username);
+        $query -> execute();
+        $result = $query -> get_result();
+        while($row = $result -> fetch_assoc()){
+            array_push($user,$row);
+        };
+        $query -> close();
+        $conn->close();
+
+        if(!empty($user) && password_verify($password,$user[0]['hashed_password'])){
+            $_SESSION['username'] = $user[0]['user_id'];
+            $_SESSION['password'] = $user[0]['hashed_password'];
+                $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
+                header('Location: '.'buy.php?house='.$h);
+        } else {
+            $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
+}
+}
+?>
+        </nav>
+    </header>
   <main>
     <form method="POST" class="property-form">
       <input type="text" placeholder="Search location" class="search-bar">
@@ -280,16 +399,18 @@ session_start();
     </div>
     <div id="owner-card">
         <p id="title">Owner Details</p>
-          <div class="owner-name">
-            <p id="owner-name">${property[0].owner}</p>
-          </div>
+        <div class="owner-name">
+          <p id="owner-name"></p>
+        </div>
+        <div class="owner-info">
         <div class="owner-phone">
-          <i class="ph-duotone ph-phone"></i><p id='owner-phone'>${property[0].phone}</p>
+          <i class="ph ph-phone"></i><p id='owner-phone'></p>
         </div>
-        <div class="owner-phone">
-          <i class="ph-duotone ph-phone"></i><p id='owner-email'>${property[0].phone}</p>
+        <div class="owner-email">
+        <i class="ph ph-envelope"></i></i><p id='owner-email'></p>
         </div>
         </div>
+</div>
     </div>
   </main>
   <section id="contact">

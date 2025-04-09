@@ -15,9 +15,10 @@ let bathsEl = document.querySelector('#baths-count');
 let roomsEl = document.querySelector('#rooms-count');
 let nameEl = document.querySelector('#owner-name');
 let phoneEl = document.querySelector('#owner-phone');
-let emailEl = document.querySelector('#owner-email');
+let ownerEmailEl = document.querySelector('#owner-email');
 let property;
-const header=document.querySelector("header")
+
+const header=document.querySelector("header");
 let video = document.createElement('video');
 video.classList.add('view-image');
 video.classList.add('video');
@@ -35,22 +36,8 @@ request.addEventListener('load',function(){
 
     property = JSON.parse(this.responseText);
     let image_url = property[0].image_url.split('|');
-    if(property[0].video_url){
-        video.src=property[0].video_url;
-        video.width = 750;
-        video.height = 440;
-        
-        image.replaceWith(video);
-        video.addEventListener("mouseenter",function(){
-            video.play();
-        });
-        video.addEventListener("mouseleave", function () {
-            video.pause(); 
-          });
-        ;
-    } else {
+    
         image.src=image_url[0];
-    }
     for(let i = 0; i < 4; i++){
       document.querySelector(`.preview-${i+1}`).src=image_url[i];
     }
@@ -60,6 +47,8 @@ request.addEventListener('load',function(){
     bathsEl.textContent = property[0].baths + ' baths'; 
     roomsEl.textContent = property[0].rooms + ' rooms';
     nameEl.textContent = property[0].owner;
+    phoneEl.textContent = property[0].phone;
+    ownerEmailEl.textContent = property[0].email;
 
     // const content =  `<div class="property-tab">
     // <div class="image-section">
@@ -121,7 +110,7 @@ request.addEventListener('load',function(){
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
     var marker = L.marker([property[0].lat, property[0].longitude]).addTo(map);
-})
+});
 
 window.addEventListener('load',function(){
     request.open('GET',`fetch.php?house=${id}`);
@@ -130,12 +119,7 @@ window.addEventListener('load',function(){
 
 
 preview1.addEventListener("click", function () {
-    if(!image.classList.contains('video')){
-      image.replaceWith('video');
-      image.src=property[0].video_url;
-      image.width = 750;
-      image.height = 440;
-     }
+    
     image.src = preview1.src;
   
     preview1.classList.add("active-image");
@@ -149,7 +133,6 @@ preview1.addEventListener("click", function () {
   
   preview2.addEventListener("click", function () {
     
-    image.replaceWith("image");
     image.src = preview2.src;
   
     preview2.classList.add("active-image");
@@ -162,7 +145,6 @@ preview1.addEventListener("click", function () {
   });
   
   preview3.addEventListener("click", function () {
-    image.replaceWith("image");
 
     image.src = preview3.src;
   
@@ -176,7 +158,6 @@ preview1.addEventListener("click", function () {
   });
   
   preview4.addEventListener("click", function () {
-    image.replaceWith("image");
 
     image.src = preview4.src;
   

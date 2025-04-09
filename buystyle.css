@@ -172,12 +172,25 @@ form {
 }
 
 .property-tab {
-  flex-basis: 700px;
+  flex-basis: 800px;
   display:flex;
   flex-direction: column;
   
 }
+.ph-phone,.ph-envelope {
+  font-size: 25px;
+}
+.owner-phone, .owner-email {
+  display:flex;
+  gap: 20px;
+  color:#121b25d2
+  
+}
 
+#owner-phone , #owner-email {
+  font-size: 20px;
+  font-weight: 500;
+}
 .view-image {
   width: 100%;
 }
@@ -305,10 +318,13 @@ form {
 }
 .owner-info {
   display: flex;
+  flex-direction: column;
   gap: 0.625rem;
+  
 }
 #owner-name {
-  font-size: 1.125rem;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 #owner-job {
   font-size: 0.75rem;

@@ -19,13 +19,13 @@ if(isset($_GET['house'])){
             $properties[] = $row;
         }
     }
-    $query = $conn -> prepare("Select * from users where user_ = ?");
-    $query->bind_param("i", $id);
-    $query -> execute();
-    $result = $query -> get_result();
+    // $query = $conn -> prepare("Select * from users where user_ = ?");
+    // $query->bind_param("i", $id);
+    // $query -> execute();
+    // $result = $query -> get_result();
+    // $query -> close();
+    // $conn -> close();
     echo json_encode($properties);
-    $query -> close();
-    $conn -> close();
 }
 
 ?>

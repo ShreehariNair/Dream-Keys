@@ -26,13 +26,13 @@ session_start();
       </a>
       <nav class="navbar">
         <div class="link">
-          <a href="index.php" class="nav-link">Home</a>
+          <a href="home.php" class="nav-link">Home</a>
         </div>
         <div class="link">
           <a href="about.html" class="nav-link">About us</a>
         </div>
         <div class="link">
-          <a href="search.php" class="nav-link">Buy</a>
+          <a href="index.php" class="nav-link">Buy</a>
         </div>
         <div class="link">
           <a href="sell.php" class="nav-link">Sell</a>
@@ -59,8 +59,9 @@ session_start();
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
       echo '<form method="POST" action="index.php"><div class="h-btn">
-      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div></form>
-      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button>';
+      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div>
+      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button></div></form>';
+
     } else {
     echo '<div class="h-btn user">
     <button onclick="show()" id="loginButton" class="h-btn1">Login</button>
@@ -178,8 +179,7 @@ session_start();
 }
 }
 ?>
-      <button class="menu-btn">
-        </button>
+      <button class="menu-btn"></button>
         <nav class="mobile-nav">
           <button class="close-btn"></button>
           <div class="mobile-link">
@@ -219,13 +219,14 @@ session_start();
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
-      echo '<form method="POST" action="index.php"><div class="h-btn">
-      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div></form>
-      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button>';
+      echo '<form method="POST" action="index.php"><div class="mobile-h-btn">
+      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle" style="color:#121b25"></i></div>
+      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="mobile-h-btn1">Logout</button>
+      </div></form>';
     } else {
-    echo '<div class="h-btn">
-    <button onclick="show()" id="loginButton" class="h-btn1">Login</button>
-    <button onclick="showregister()" id="signUpButton" class="h-btn2">Sign Up</button>
+    echo '<div class="mobile-h-btn">
+    <button onclick="show()" id="loginButton" class="mobile-h-btn1">Login</button>
+    <button onclick="showregister()" id="signUpButton" class="mobile-h-btn2">Sign Up</button>
     </div>
     
     <div id="overlay" style="display: none;">
@@ -410,9 +411,9 @@ session_start();
             </div>
         </div>
         <div class="properties flex">
-          <!-- <div class="empty-state">
+          <div class="empty-state">
             <img src="assets/empty-state.svg" width="500" height="500" alt="empty-state" style="width: 32rem; height: 32rem;">
-            </div> -->
+            </div>
             
       </div>
 </div>
@@ -471,10 +472,9 @@ session_start();
       
     </style>
     <script src="auth.js"></script>
-  <script src="view.js">
-    </script>
-      <script src="menu.js"></script>
-      <script src="data.js"></script>
+    <script src="view.js"></script>
+    <script src="menu.js"></script>
+    <script src="data.js"></script>
 
 </body>
 </html>

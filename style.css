@@ -185,8 +185,8 @@ form {
 
 .property-card {
   position: relative;
-  width: 17rem;
-  height: 100%;
+  width: 20rem;
+  height: 25rem;
   background-color: #fff;
   border-radius: 8px;
   transition: all 0.3s ease-in-out;
@@ -197,18 +197,18 @@ form {
 .property-img {
   border-radius: 10px 10px 0px 0px;
   width: 100%;
-  height: 40%;
+  height: 45%;
 }
 .property-info {
   padding: 0.9rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  font-size: 16px;
+  font-size: 18px;
 }
 .property-name {
   font-weight: 500;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
 }
 .owner,
 .location {
@@ -225,7 +225,7 @@ form {
   width: 7rem;
   padding: 0.31rem;
   border-radius: 20px;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 .filters {
   position: relative;
@@ -293,7 +293,7 @@ form {
 .filter-title {
   width: 100%;
   height: 100%;
-  padding-left: 15px;
+  padding-left: 0.9rem;
   font-size: 1.37em;
   display: flex;
   align-items: center;
@@ -635,24 +635,24 @@ a {
     color: white;
 }
 
-.h-btn{
+.h-btn, .mobile-h-btn{
   display: flex;
   align-items: center;
 } 
-.h-btn2{
+.h-btn2, .mobile-h-btn2{
   display: inline-block;
-  padding: 10px 18px;
+  padding:  0.625rem 1.125rem;
   background: var(--main-color);
   color: var(--text-color);
   font-size: 18px;
   font-weight: 500;
-  margin-left: 20px;
+  margin-left: 1.25rem;
   transition: all .40s ease;
   animation: slideTop 1s ease forwards;
   animation-delay: calc(.2s* var(--i));
 } 
-.h-btn1{
-  padding: 10px 18px;
+.h-btn1, .mobile-h-btn1{
+  padding:  0.625rem 1.125rem;
   background: var(--main-color);
   color: var(--text-color);
   font-weight: 500;

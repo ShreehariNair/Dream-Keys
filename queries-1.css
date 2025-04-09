@@ -40,7 +40,9 @@
   .menu-btn {
     display:inline;
   }
-  
+  .h-btn {
+    display:none;
+  }
   .mobile-nav {
     height: 100vh;
     width: 80%;
@@ -90,19 +92,20 @@
     position:relative; 
   }
 
-  .search-bar ,.search-btn{
-    height: 4rem;
-    font-size: 1.4rem;
-    
-  } 
-  .search-bar {
-    padding-left: 2rem;
-  } 
+  
+  .h-btn 
   .empty-state img{
     width: 20rem;
     height: 20rem;
   }
   
+}
+@media (max-width: 34.375rem){
+  .filters {
+    align-self: center;
+    width: 40rem;
+    padding-left: 0px;
+  }
 }
 @media (max-width: 29rem){
   html {
@@ -114,5 +117,12 @@
 .filters {
   padding-left:1.5rem;
 }
-
+.search-bar ,.search-btn{
+  height: 4rem;
+  font-size: 1.4rem;
+  
+} 
+.search-bar {
+  padding-left: 2rem;
+} 
 }

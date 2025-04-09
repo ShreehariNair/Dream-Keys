@@ -71,48 +71,55 @@ function validate(value){
     return true;
   }
 }
-function validatePhone(phone){
+function validatePhone(){
   const error = `<div class = "error">
   <i class="ph ph-warning"></i>
   <p>Invalid Phone Number</p>
   </div>`;
   let errorEl = document.querySelector('#phone-container .error');
-
-  if(phone.length != 10){
-    if(!document.querySelector('#phone-container').contains(errorEl)){
+  const pattern = /[-’/`~!#*$@_%+=.,^&(){}[\]|;:”<>?\\]/g;
+  if(phoneEl.value.length != 10 && pattern.test(phoneEl.value)){
+    if(errorEl){
       document.querySelector('#phone-container').insertAdjacentHTML('beforeend',error)
     }
     return false;
   } else {
+    if(document.querySelector('#phone-container').contains(errorEl)){
+      errorEl.remove();
+    }
     return true;
   }
 }
 
-function validateEmail(email){
+function validateEmail(){
   const error = `<div class = "error">
   <i class="ph ph-warning"></i>
   <p>Invalid Email</p>
   </div>`;
   let errorEl = document.querySelector('#email-container .error');
 
-  if(!(email.includes('@') && email.includes('.com'))){
+  if(!(emailEl.value.includes('@') && emailEl.value.includes('.com'))){
     if(!document.querySelector('#email-container').contains(errorEl)){
       document.querySelector('#email-container').insertAdjacentHTML('beforeend',error)
     }
     return false;
   } else {
+    if(document.querySelector('#email-container').contains(errorEl)){
+      document.querySelector('#email-container').remove();
+    }
     return true;
+
   }
 }
 
-function validatePincode(pincode){
+function validatePincode(){
   const error = `<div class = "error">
   <i class="ph ph-warning"></i>
   <p>Invalid Pincode</p>
   </div>`;
   let errorEl = document.querySelector('#email-container .error');
 
-  if(pincode.length != 6){
+  if(pincodeEl.value.length != 6){
     if(!document.querySelector('#pincode-container').contains(errorEl)){
       document.querySelector('#pincode-container').insertAdjacentHTML('beforeend',error);
     }
@@ -122,7 +129,9 @@ function validatePincode(pincode){
     return true;
   }
 }
-phoneEl.addEventListener('input',validatePhone(phoneEl.value));
+phoneEl.addEventListener('change',validatePhone);
+emailEl.addEventListener('change',validateEmail);
+
 
 document.querySelector('#form-1-btn').addEventListener('click',function(e){
 
@@ -132,10 +141,8 @@ owner.fullName = owner.firstName + ' ' + owner.lastName;
 owner.email = emailEl.value;
 owner.phone = Number(phoneEl.value); 
 
-validatePhone(phoneEl.value);
-validateEmail(emailEl.value);
 
-  if(validatePhone(phoneEl.value) && validateEmail(emailEl.value) && validate(firstNameEl.value) && validate(lastNameEl.value)){
+  if(validatePhone() && validateEmail() && validate(firstNameEl.value) && validate(lastNameEl.value)){
     e.preventDefault();
     firstNameEl.value = '';
     lastNameEl.value = '';
