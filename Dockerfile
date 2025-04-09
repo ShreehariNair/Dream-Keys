@@ -12,6 +12,6 @@ COPY . /var/www/html/
 
 # Expose port 80
 EXPOSE 80
-
+RUN echo "DirectoryIndex home.php" >> /etc/apache2/sites-available/000-default.conf
 # Command to run Apache in the foreground
 CMD ["apache2-foreground"]
