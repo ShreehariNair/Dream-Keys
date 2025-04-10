@@ -52,10 +52,17 @@ session_start();
         echo $_SESSION['status'];
         $_SESSION['status'] = '';
     }
+    if(!(isset($_SESSION['username']) && isset($_SESSION['password']))){
+      $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Please log in to sell property</p></div>';
+       echo '<script>location.href="home.php"</script>';
+       exit();
+    }
     if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
-        echo $message = '<div id="messageBox">You have successfully logged out</div>';   
         session_reset();
         session_destroy();
+        session_start();
+        $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Please log in to sell property</p></div>';
+       echo '<script>location.href="home.php"</script>';
         header('Location: '.'home.php');
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
@@ -175,7 +182,7 @@ $port = 11316;
             $_SESSION['username'] = $user[0]['user_id'];
             $_SESSION['password'] = $user[0]['hashed_password'];
                 $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                header('Location: '.'home.php');
+                header('Location: '.'sell.php');
         } else {
             $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
             header('Location: '.'home.php');
