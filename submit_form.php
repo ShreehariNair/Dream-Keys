@@ -4,7 +4,7 @@ session_start();
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-$conn=new mysqli("localhost","root","","dream keys");
+$conn=new mysqli("mysql-6362f39-student-86e0.c.aivencloud.com","avnadmin","AVNS_ch4yIylQ2kinVTCYSxk","defaultdb",11316);
 
 
 
