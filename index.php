@@ -20,7 +20,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
   </head>
   <body>
-    <header>
+  <header>
       <a href="index.html" class="logo">
         <img src="assets/logo.png" width="120" alt="logo" height="100" class="logo-img">
       </a>
@@ -46,21 +46,23 @@ session_start();
     $password = '';
     $email = '';
     $error = '';
-    
+    $message = '';
+
     if(isset($_SESSION['status'])){
         echo $_SESSION['status'];
         $_SESSION['status'] = '';
     }
     if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
+        echo $message = '<div id="messageBox">You have successfully logged out</div>';   
         session_reset();
         session_destroy();
-        header('Location: '.'index.php');
+        header('Location: '.'home.php');
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
-      echo '<form method="POST" action="index.php"><div class="h-btn">
-      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div>
-      <input type="hidden" name="signout" value="true"><button id="logoutButton" class="h-btn1">Logout</button></div></form>';
+      echo '<form method="POST" action="buy.php"><div class="h-btn">
+      <a href="profile.html"><div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div></a>
+      <input type="hidden" name="signout" value="true"><button onclick="showMessage()"id="logoutButton" class="h-btn1">Logout</button></div></form>';
 
     } else {
     echo '<div class="h-btn user">
@@ -71,7 +73,7 @@ session_start();
     <div id="overlay" style="display: none;">
             <div class="credentials">
             <div class="login" style="display: none;">
-            <form class="form" method="POST" action="index.php">
+            <form class="form" method="POST" action="buy.php">
             <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
             <h1 class="head1">LOGIN</h1>
             <label class="mylabel">Username</label>
@@ -82,7 +84,7 @@ session_start();
             </form>
             </div>
             <div class="register" style="display: none;">
-            <form class="form" method="POST" action="index.php">
+            <form class="form" method="POST" action="buy.php">
             <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
                         <h1 class="head1">SIGN UP</h1>
                         <label class="mylabel">Username</label>
@@ -110,13 +112,14 @@ session_start();
             $username = $_POST['username'];
             $password = $_POST['pw'];
             $email = $_POST['email'];
-            $s = "localhost";
-            $u = "DBA";
-            $p = "dba";
-            $db = "dream keys";
+            $s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+            $u = "avnadmin";
+            $p = "AVNS_ch4yIylQ2kinVTCYSxk";
+            $db = "defaultdb";
+            $port = 11316;
 
             $user = [];
-            $conn = mysqli_connect($s,$u,$p,$db);
+            $conn = mysqli_connect($s,$u,$p,$db,$port);
             $query = $conn -> prepare("Select * from users where user_id = ? LIMIT 1;");
             $query -> bind_param('s',$username);
             $query -> execute();
@@ -129,13 +132,14 @@ session_start();
             if(!empty($user) && $username == $user[0]['user_id']){
                 $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>User Id already exists</p></div>';
             } else {
-                $s = "localhost";
-                $u = "DBA";
-                $p = "dba";
-                $db = "dream keys";
+                $s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+$u = "avnadmin";
+$p = "AVNS_ch4yIylQ2kinVTCYSxk";
+$db = "defaultdb";
+$port = 11316;
                 global $username,$password,$email;
                 $hashed_pw = password_hash($password,PASSWORD_DEFAULT);
-                $conn = mysqli_connect($s,$u,$p,$db);
+                $conn = mysqli_connect($s,$u,$p,$db,$port);
                 $query = $conn -> prepare("Insert into users (user_id,hashed_password,email) VALUES (?,?,?)");
                 $query -> bind_param('sss',$username,$hashed_pw,$email);
                 $query -> execute();
@@ -149,13 +153,14 @@ session_start();
         global $username,$password; 
         $username = $_POST['username']; 
         $password = $_POST['pw'];
-        $s = "localhost";
-        $u = "DBA";
-        $p = "dba";
-        $db = "dream keys";
+        $s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+$u = "avnadmin";
+$p = "AVNS_ch4yIylQ2kinVTCYSxk";
+$db = "defaultdb";
+$port = 11316;
 
         $user = [];
-        $conn = mysqli_connect($s,$u,$p,$db);
+        $conn = mysqli_connect($s,$u,$p,$db,$port);
         $query = $conn -> prepare("Select * from users where user_id = ?");
         $query -> bind_param('s',$username);
         $query -> execute();
@@ -170,10 +175,10 @@ session_start();
             $_SESSION['username'] = $user[0]['user_id'];
             $_SESSION['password'] = $user[0]['hashed_password'];
                 $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                header('Location: '.'index.php');
+                header('Location: '.'home.php');
         } else {
             $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
-            header('Location: '.'index.php');
+            header('Location: '.'home.php');
             
             
 }
@@ -215,12 +220,12 @@ session_start();
     if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
         session_reset();
         session_destroy();
-        header('Location: '.'index.php');
+        header('Location: '.'home.php');
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
-      echo '<form method="POST" action="index.php"><div class="mobile-h-btn">
-      <div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle" style="color:#121b25"></i></div>
+      echo '<form method="POST" action="home.php"><div class="mobile-h-btn">
+      <a href="profile.html"><div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle" style="color:#121b25"></i></div></a>
       <input type="hidden" name="signout" value="true"><button id="logoutButton" class="mobile-h-btn1">Logout</button>
       </div></form>';
     } else {
@@ -232,7 +237,7 @@ session_start();
     <div id="overlay" style="display: none;">
             <div class="credentials">
             <div class="login" style="display: none;">
-            <form class="form" method="POST" action="index.php">
+            <form class="form" method="POST" action="home.php">
             <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
             <h1 class="head1">LOGIN</h1>
             <label class="mylabel">Username</label>
@@ -243,7 +248,7 @@ session_start();
             </form>
             </div>
             <div class="register" style="display: none;">
-            <form class="form" method="POST" action="index.php">
+            <form class="form" method="POST" action="home.php">
             <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
                         <h1 class="head1">SIGN UP</h1>
                         <label class="mylabel">Username</label>
@@ -271,13 +276,14 @@ session_start();
             $username = $_POST['username'];
             $password = $_POST['pw'];
             $email = $_POST['email'];
-            $s = "localhost";
-            $u = "DBA";
-            $p = "dba";
-            $db = "dream keys";
+            $s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+$u = "avnadmin";
+$p = "AVNS_ch4yIylQ2kinVTCYSxk";
+$db = "defaultdb";
+$port = 11316;
 
             $user = [];
-            $conn = mysqli_connect($s,$u,$p,$db);
+            $conn = mysqli_connect($s,$u,$p,$db,$port);
             $query = $conn -> prepare("Select * from users where user_id = ? LIMIT 1;");
             $query -> bind_param('s',$username);
             $query -> execute();
@@ -290,13 +296,14 @@ session_start();
             if(!empty($user) && $username == $user[0]['user_id']){
                 $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>User Id already exists</p></div>';
             } else {
-                $s = "localhost";
-                $u = "DBA";
-                $p = "dba";
-                $db = "dream keys";
+                $s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+$u = "avnadmin";
+$p = "AVNS_ch4yIylQ2kinVTCYSxk";
+$db = "defaultdb";
+$port = 11316;
                 global $username,$password,$email;
                 $hashed_pw = password_hash($password,PASSWORD_DEFAULT);
-                $conn = mysqli_connect($s,$u,$p,$db);
+                $conn = mysqli_connect($s,$u,$p,$db,$port);
                 $query = $conn -> prepare("Insert into users (user_id,hashed_password,email) VALUES (?,?,?)");
                 $query -> bind_param('sss',$username,$hashed_pw,$email);
                 $query -> execute();
@@ -310,13 +317,14 @@ session_start();
         global $username,$password; 
         $username = $_POST['username']; 
         $password = $_POST['pw'];
-        $s = "localhost";
-        $u = "DBA";
-        $p = "dba";
-        $db = "dream keys";
+        $s = "mysql-6362f39-student-86e0.c.aivencloud.com";
+$u = "avnadmin";
+$p = "AVNS_ch4yIylQ2kinVTCYSxk";
+$db = "defaultdb";
+$port = 11316;
 
         $user = [];
-        $conn = mysqli_connect($s,$u,$p,$db);
+        $conn = mysqli_connect($s,$u,$p,$db,$port);
         $query = $conn -> prepare("Select * from users where user_id = ?");
         $query -> bind_param('s',$username);
         $query -> execute();
@@ -331,17 +339,14 @@ session_start();
             $_SESSION['username'] = $user[0]['user_id'];
             $_SESSION['password'] = $user[0]['hashed_password'];
                 $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                header('Location: '.'index.php');
+                header('Location: '.'home.php');
         } else {
             $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
-            header('Location: '.'index.php');
-            
-            
+            header('Location: '.'home.php');  
 }
 }
 ?>
         </nav>
-        
     </header>
     <main>
       <form method="GET" class="property-form">

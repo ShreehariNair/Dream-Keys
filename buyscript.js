@@ -9,6 +9,8 @@ let preview3 = document.querySelector(".preview-3");
 
 let preview4 = document.querySelector(".preview-4");
 let priceEl = document.querySelector('#property-price');
+let costPerEl = document.querySelector('#sq-ft-cost p');
+let aboutEl = document.querySelector('.about-line');
 let locationEl = document.querySelector('#location');
 let bedsEl = document.querySelector('#beds-count');
 let bathsEl = document.querySelector('#baths-count');
@@ -49,7 +51,8 @@ request.addEventListener('load',function(){
     nameEl.textContent = property[0].owner;
     phoneEl.textContent = property[0].phone;
     ownerEmailEl.textContent = property[0].email;
-
+    costPerEl.textContent = '₹' + Math.trunc(property[0].price/property[0].size) + ' per sq ft';
+    aboutEl.textContent = property[0].about;
     // const content =  `<div class="property-tab">
     // <div class="image-section">
     // <img src=${image_url[0]} alt="House image" width="750" height="440" class="view-image">
