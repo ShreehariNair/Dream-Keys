@@ -68,7 +68,7 @@ session_start();
         echo $message = '<div id="messageBox">You have successfully logged out</div>';   
         session_reset();
         session_destroy();
-        header('Location: '.'home.php');
+        echo '<script>location.href("home.php")</script>';
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
@@ -187,10 +187,12 @@ $port = 11316;
             $_SESSION['username'] = $user[0]['user_id'];
             $_SESSION['password'] = $user[0]['hashed_password'];
                 $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                header('Location: '.'home.php');
+                echo '<script>location.href("home.php")</script>';
+
         } else {
             $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
-            header('Location: '.'home.php');
+            echo '<script>location.href("home.php")</script>';
+
             
             
 }
@@ -232,7 +234,7 @@ $port = 11316;
     if(isset($_POST['signout']) && $_POST['signout'] == 'true'){
         session_reset();
         session_destroy();
-        header('Location: '.'home.php');
+        echo '<script>location.href("home.php")</script>';
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
@@ -351,11 +353,11 @@ $port = 11316;
             $_SESSION['username'] = $user[0]['user_id'];
             $_SESSION['password'] = $user[0]['hashed_password'];
                 $_SESSION['status'] = '<div class="message"><i class="ph-fill ph-check-circle"></i><p> You have successfully logged in</p></div>';
-                header('Location: '.'home.php');
-        } else {
+                echo '<script>location.href("home.php")</script>';
+              } else {
             $_SESSION['status'] = '<div class="message warning"><i class="ph ph-warning-circle"></i><p>Invalid Password</p></div>';
-            header('Location: '.'home.php');  
-}
+            echo '<script>location.href("home.php")</script>';
+          }
 }
 ?>
         </nav>
