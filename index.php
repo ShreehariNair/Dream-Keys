@@ -60,7 +60,7 @@ session_start();
     }
     if(isset($_SESSION['username']) && isset($_SESSION['password'])){
         
-      echo '<form method="POST" action="buy.php"><div class="h-btn">
+      echo '<form method="POST" action="index.php"><div class="h-btn">
       <a href="profile.html"><div id="userProfile" class="user-circle"><i class="ph-fill ph-user-circle"></i></div></a>
       <input type="hidden" name="signout" value="true"><button onclick="showMessage()"id="logoutButton" class="h-btn1">Logout</button></div></form>';
 
@@ -73,7 +73,7 @@ session_start();
     <div id="overlay" style="display: none;">
             <div class="credentials">
             <div class="login" style="display: none;">
-            <form class="form" method="POST" action="buy.php">
+            <form class="form" method="POST" action="index.php">
             <button onclick="hide()" id="close-login"><i class="ph ph-x"></i></button>
             <h1 class="head1">LOGIN</h1>
             <label class="mylabel">Username</label>
@@ -84,7 +84,7 @@ session_start();
             </form>
             </div>
             <div class="register" style="display: none;">
-            <form class="form" method="POST" action="buy.php">
+            <form class="form" method="POST" action="index.php">
             <button onclick="hide()" id="close-register"><i class="ph ph-x"></i></button>
                         <h1 class="head1">SIGN UP</h1>
                         <label class="mylabel">Username</label>

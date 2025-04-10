@@ -33,7 +33,7 @@ session_start();
 </div>
   </div>
   <header>
-      <a href="index.html" class="logo">
+      <a href="index.php" class="logo">
         <img src="assets/logo.png" width="120" alt="logo" height="100" class="logo-img">
       </a>
       <nav class="navbar">
