@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <link rel="stylesheet" href="contact.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
@@ -63,7 +65,7 @@
             <span class="error" id="emailError"><?php echo $_SESSION['errors']['email'] ?? ''; ?></span>
             <textarea name="Message" id="Message" placeholder="Your Message" class="contact-input"><?php echo $_SESSION['old_data']['Message'] ?? ''; ?></textarea>
             <span class="error" id="messageError"><?php echo $_SESSION['errors']['message'] ?? ''; ?></span>
-            <button type="submit">Submit <img src="arrow_icon.png"></button>
+            <button type="submit">Submit &rarr;</button>
         </form>
         <div class="contact-right">
           <img src="right_img.png">
