@@ -12,7 +12,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        
+        * {
+            font-family:'Work Sans',sans-serif;
+        }
         #map {
             height: 400px; 
             width: 400px; 
@@ -67,9 +69,7 @@
             <span class="error" id="messageError"><?php echo $_SESSION['errors']['message'] ?? ''; ?></span>
             <button type="submit">Submit &rarr;</button>
         </form>
-        <div class="contact-right">
-          <img src="right_img.png">
-        </div>
+        
     </div>
 
     <footer>
